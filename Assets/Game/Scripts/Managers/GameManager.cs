@@ -1,4 +1,5 @@
 using Assets.Game.Scripts.Controllers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,13 @@ namespace Assets.Game.Scripts.Managers
 {
     public class GameManager : MonoBehaviour
     {
-        public InputController _inputController;
+        public InputController InputController;
+        public BattleController BattleController;
 
         private void Start()
         {
-            _inputController.Initialize(this);
+            InputController.Initialize(this);
+            BattleController.Initialize(this);
         }
     }
 }

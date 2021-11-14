@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Game.Scripts.Controllers
 {
-    public class InputController : Controller
+    public class InputController : CustomBehaviour
     {
         public static bool IsInputDeactivated { get; set; } // All gameplay input depends on this, close from UI
 

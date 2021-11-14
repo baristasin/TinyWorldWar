@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Assets.Game.Scripts.Controllers
 {
-    public abstract class Controller : MonoBehaviour
+    public abstract class CustomBehaviour : MonoBehaviour
     {
-        protected GameManager GameManager;
+        public GameManager GameManager;
         public virtual void Initialize(GameManager gameManager)
         {
             GameManager = gameManager;
