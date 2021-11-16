@@ -22,13 +22,16 @@ namespace Assets.Game.Scripts.Controllers
         public override void Initialize(GameManager gameManager)
         {
             base.Initialize(gameManager);
+
             _playerMovementBehaviour.Initialize(this);
             _characterHitDetectorBehaviour.Initialize(this);
             _gunnerBehaviour.Initialize(this);
+            _aimBehaviour.Initialize(this);
 
             _playerMovementBehaviour.Activate();
             _characterHitDetectorBehaviour.Activate();
             _gunnerBehaviour.Activate();
+            _aimBehaviour.Activate();
         }
 
         private void Update()

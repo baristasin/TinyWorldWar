@@ -13,15 +13,10 @@ namespace Assets.Game.Scripts.Behaviours
 
         private void Update()
         {
-            _aimTransform.position = _tpsCamera.transform.position + _tpsCamera.transform.forward * 40f;
-
-            Debug.DrawRay(_tpsCamera.transform.position, _tpsCamera.transform.forward * 10f ,Color.blue);
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(_aimTransform.position, 1f);
+            if(_isInitialized && _isActivated)
+            {
+                _aimTransform.position = _tpsCamera.transform.position + _tpsCamera.transform.forward * 40f; // 40 depends on gun range
+            }
         }
     }
 }

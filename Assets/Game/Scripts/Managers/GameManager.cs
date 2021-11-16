@@ -17,7 +17,7 @@ namespace Assets.Game.Scripts.Managers
             InputController.Initialize(this);
             BattleController.Initialize(this);
 
-            _soldierCharacterController.Initialize(this);            
+            _soldierCharacterController.Initialize(this); // Temp
         }
     }
 }
