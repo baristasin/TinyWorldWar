@@ -3,6 +3,7 @@ using Assets.Game.Scripts.Managers;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Game.Scripts.Controllers
 {
@@ -11,10 +12,12 @@ namespace Assets.Game.Scripts.Controllers
         public CharacterHitDetectorBehaviour CharacterHitDetectorBehaviour => _characterHitDetectorBehaviour;
         public PlayerMovementBehaviour PlayerMovementBehaviour => _playerMovementBehaviour;
         public GunnerBehaviour GunnerBehaviour => _gunnerBehaviour;
+        public AimBehaviour AimBehaviour => _aimBehaviour;
 
         [SerializeField] private PlayerMovementBehaviour _playerMovementBehaviour;
         [SerializeField] private CharacterHitDetectorBehaviour _characterHitDetectorBehaviour;
         [SerializeField] private GunnerBehaviour _gunnerBehaviour;
+        [SerializeField] private AimBehaviour _aimBehaviour;
 
         public override void Initialize(GameManager gameManager)
         {
@@ -33,6 +36,11 @@ namespace Assets.Game.Scripts.Controllers
             if (Input.GetMouseButtonDown(0))
             {
                 _gunnerBehaviour.ShootCurrentGun();
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                _playerMovementBehaviour.SetFiring();
             }
         }
 

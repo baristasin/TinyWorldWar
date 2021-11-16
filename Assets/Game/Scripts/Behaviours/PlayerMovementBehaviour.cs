@@ -2,11 +2,14 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Game.Scripts.Behaviours
 {
     public class PlayerMovementBehaviour : BaseCharacterBehaviour
     {
+        public bool IsAiming => _isAiming;
+
         [SerializeField] private CharacterController _characterController;
 
         [SerializeField] private float _speed;
@@ -19,17 +22,20 @@ namespace Assets.Game.Scripts.Behaviours
 
         [SerializeField] private float _jumpHeight;
 
+        [SerializeField] private Image _crosshair;
+
         private float _groundDistance = 0.4f;
         private float _turnSmoothTime = 0.1f;
         private float _turnSmoothVelocity;
         private bool _isGrounded;
-        private bool _isFiring;
+        private bool _isAiming;
         private Vector3 _fallVelocity;
 
         [Button]
         public void SetFiring()
         {
-            _isFiring = !_isFiring;
+            _isAiming = !_isAiming;
+            _crosshair.gameObject.SetActive(_isAiming);
         }
 
         private void Update()
@@ -60,7 +66,7 @@ namespace Assets.Game.Scripts.Behaviours
                 _characterController.Move(moveDirection.normalized * _speed * Time.deltaTime);
             }
 
-            if (_isFiring)
+            if (_isAiming)
             {
                 float targetAngle = _cameraTransfom.eulerAngles.y;
 

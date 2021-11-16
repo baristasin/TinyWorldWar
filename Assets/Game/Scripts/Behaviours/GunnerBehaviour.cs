@@ -27,6 +27,18 @@ namespace Assets.Game.Scripts.Behaviours
             _currentGun = _guns[0];
         }
 
+        private void Update()
+        {
+            if (_soldierCharacterController.PlayerMovementBehaviour.IsAiming)
+            {
+                _gunInitializedTransform.transform.LookAt(_soldierCharacterController.AimBehaviour.AimTransform);
+            }
+            else
+            {
+                _gunInitializedTransform.transform.localEulerAngles = Vector3.zero;
+            }
+        }
+
         public override void Activate()
         {
             base.Activate();
