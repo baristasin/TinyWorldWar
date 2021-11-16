@@ -6,7 +6,10 @@ namespace Assets.Game.Scripts.Guns
 {
     public abstract class Gun : MonoBehaviour
     {
+        public float InitializeInterval => _initializeInterval;
+
         [SerializeField] protected Transform _muzzleTransform;
+        [SerializeField] private float _initializeInterval;
         [SerializeField] protected Bullet _bulletPrefab;
         [SerializeField] protected float _firingRate;
 
@@ -16,6 +19,13 @@ namespace Assets.Game.Scripts.Guns
 
         public void Initialize()
         {
+            StartCoroutine(InitializeCo());
+            Debug.Log("Gun initializing");
+        }
+
+        private IEnumerator InitializeCo()
+        {
+            yield return new WaitForSeconds(_initializeInterval);
             _isInitialized = true;
         }
 
