@@ -28,6 +28,14 @@ namespace Assets.Game.Scripts.Controllers
             _gunnerBehaviour.Activate();
         }
 
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _gunnerBehaviour.ShootCurrentGun();
+            }
+        }
+
         public void DetectorHit(LayerMask layer)
         {
             var damage = GameManager.BattleController.GetDamageAmount(layer);

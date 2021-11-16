@@ -39,7 +39,12 @@ namespace Assets.Game.Scripts.Behaviours
 
             _currentGun.gameObject.SetActive(true);
 
-            _currentGun.Initialize();
+            _currentGun.Initialize(_gunInitializedTransform);
+        }
+
+        public void ShootCurrentGun()
+        {
+            _currentGun.Shoot();
         }
     }
 }

@@ -16,10 +16,12 @@ namespace Assets.Game.Scripts.Guns
         protected bool _isInitialized;
         protected bool _isOnCooldown;
         protected float _cooldown;
+        protected Transform _holdTransform;
 
-        public void Initialize()
+        public void Initialize(Transform holdTransform)
         {
             StartCoroutine(InitializeCo());
+            _holdTransform = holdTransform;
             Debug.Log("Gun initializing");
         }
 
@@ -31,13 +33,19 @@ namespace Assets.Game.Scripts.Guns
 
         private void Update()
         {
-            if (_isOnCooldown)
+            if (_isInitialized)
             {
-                _cooldown -= Time.deltaTime;
-                if(_cooldown <= 0)
+                if (_isOnCooldown)
                 {
-                    _isOnCooldown = false;
+                    _cooldown -= Time.deltaTime;
+                    if (_cooldown <= 0)
+                    {
+                        _isOnCooldown = false;
+                    }
                 }
+
+                transform.position = _holdTransform.position;
+                transform.rotation = _holdTransform.rotation;
             }
         }
 
