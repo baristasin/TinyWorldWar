@@ -11,10 +11,13 @@ namespace Assets.Game.Scripts.Managers
         public InputController InputController;
         public BattleController BattleController;
 
+        [SerializeField] private SoldierCharacterController _soldierCharacterController; 
         private void Start()
         {
             InputController.Initialize(this);
             BattleController.Initialize(this);
+
+            _soldierCharacterController.Initialize(this);            
         }
     }
 }

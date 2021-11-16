@@ -20,6 +20,9 @@ namespace Assets.Game.Scripts.Behaviours
         {
             _isInitialized = true;
 
+            _activateContainer = new List<Action>();
+            _deactivateContainer = new List<Action>();
+
             _soldierCharacterController = soldierCharacterController;
 
         }

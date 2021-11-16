@@ -8,14 +8,20 @@ namespace Assets.Game.Scripts.Controllers
 {
     public class SoldierCharacterController : CustomBehaviour
     {
-        public CharacterHitDetectorBehaviour CharacterDetectorBehaviour => _characterDetectorBehaviour;
+        public CharacterHitDetectorBehaviour CharacterHitDetectorBehaviour => _characterHitDetectorBehaviour;
+        public PlayerMovementBehaviour PlayerMovementBehaviour => _playerMovementBehaviour;
 
-        [SerializeField] private CharacterHitDetectorBehaviour _characterDetectorBehaviour;
+        [SerializeField] private PlayerMovementBehaviour _playerMovementBehaviour;
+        [SerializeField] private CharacterHitDetectorBehaviour _characterHitDetectorBehaviour;        
 
         public override void Initialize(GameManager gameManager)
         {
             base.Initialize(gameManager);
-            _characterDetectorBehaviour.Initialize(this);
+            _playerMovementBehaviour.Initialize(this);
+            _characterHitDetectorBehaviour.Initialize(this);
+
+            _playerMovementBehaviour.Activate();
+            _characterHitDetectorBehaviour.Activate();
         }
 
         public void DetectorHit(LayerMask layer)
