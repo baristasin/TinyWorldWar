@@ -36,7 +36,7 @@ namespace Assets.Game.Scripts.Controllers
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
                 _gunnerBehaviour.ShootCurrentGun();
             }

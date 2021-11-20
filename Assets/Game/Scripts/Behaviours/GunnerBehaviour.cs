@@ -77,6 +77,7 @@ namespace Assets.Game.Scripts.Behaviours
 
             if (_currentGun)
             {
+                _currentGun.DeactivateGun();
                 _currentGun.gameObject.SetActive(false);
             }
 
