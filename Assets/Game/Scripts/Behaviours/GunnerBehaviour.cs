@@ -37,21 +37,64 @@ namespace Assets.Game.Scripts.Behaviours
             {
                 _gunInitializedTransform.transform.localEulerAngles = Vector3.zero;
             }
-        }
+
+            if (Input.GetKeyDown("n"))
+            {
+                ChangeGun(true);
+            }
+            if (Input.GetKeyDown("m"))
+            {
+                ChangeGun(false);
+            }
+        }        
 
         public override void Activate()
         {
             base.Activate();
 
-            _currentGun.transform.position = _gunSpawnTransform.transform.position;
-            _currentGun.transform.rotation = _gunSpawnTransform.transform.rotation;
+            ActivateGun(_currentGun);
+        }
 
-            _currentGun.transform.position = _gunInitializedTransform.transform.position; // Temporary no delay
-            _currentGun.transform.rotation = _gunInitializedTransform.transform.rotation;
+        public void ChangeGun(bool isNext)
+        {
+            int currentIndex = 0;
+            for (int i = 0; i < _guns.Count; i++)
+            {
+                if(_guns[i] == _currentGun)
+                {
+                    currentIndex = i;
+                    break;
+                }
+            }
 
-            _currentGun.gameObject.SetActive(true);
+            var nextIndex = currentIndex + 1 % _guns.Count;
+            var previousIndex = currentIndex - 1 % _guns.Count;
 
-            _currentGun.Initialize(_gunInitializedTransform);
+            if (previousIndex < 0)
+            {
+                previousIndex += _guns.Count;
+            }
+
+            if (_currentGun)
+            {
+                _currentGun.gameObject.SetActive(false);
+            }
+
+            _currentGun = isNext == true ? _guns[nextIndex % _guns.Count] : _guns[previousIndex];
+
+            ActivateGun(_currentGun);
+        }
+
+        private void ActivateGun(Gun gun)
+        {
+            gun.transform.position = _gunSpawnTransform.transform.position;
+            gun.transform.rotation = _gunSpawnTransform.transform.rotation;
+
+            gun.transform.position = _gunInitializedTransform.transform.position; // Temporary no delay
+            gun.transform.rotation = _gunInitializedTransform.transform.rotation;
+
+            gun.gameObject.SetActive(true);
+            gun.Initialize(_gunInitializedTransform);
         }
 
         public void ShootCurrentGun()

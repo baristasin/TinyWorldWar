@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5723489450278227059}
   - component: {fileID: 8046821889069351524}
   - component: {fileID: -5566417192627008256}
-  m_Layer: 0
-  m_Name: PistolBullet
+  m_Layer: 21
+  m_Name: AssaultRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5393267969910482134}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.012705088, y: 0.5619142, z: 0.19108921}
-  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -110,6 +110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _layerMask:
     serializedVersion: 2
-    m_Bits: 1048576
-  _damage: 20
-  _bulletSpeed: 20
+    m_Bits: 2097152
+  _damage: 30
+  _bulletSpeed: 150

@@ -11,12 +11,28 @@ namespace Assets.Game.Scripts.Behaviours
         [SerializeField] private Camera _tpsCamera;
         [SerializeField] private Transform _aimTransform;
 
+        [SerializeField] private float _testAimValue;
+
         private void Update()
         {
             if(_isInitialized && _isActivated)
             {
-                _aimTransform.position = _tpsCamera.transform.position + _tpsCamera.transform.forward * 40f; // 40 depends on gun range
+                //Ray ray = new Ray(_tpsCamera.transform.position, _tpsCamera.transform.forward * _testAimValue);
+                //RaycastHit hit;
+                //if(Physics.Raycast(ray,out hit))
+                //{
+                //    _aimTransform.position = hit.point;
+                //}
+                //else
+                //{
+                    _aimTransform.position = _tpsCamera.transform.position + _tpsCamera.transform.forward * _testAimValue; // 40 depends on gun range
+                //}
             }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawCube(_aimTransform.transform.position, Vector3.one);
         }
     }
 }
