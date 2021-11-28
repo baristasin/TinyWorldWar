@@ -6,8 +6,10 @@ namespace MangoramaStudio.Scripts.Behaviours
 {
     public class CurvedIndicatorBehaviour : MonoBehaviour
     {
+        public Vector3 DirectionForward => _direction.forward.normalized;
+        public float DefaultForce => _defaultForce;
+
         [SerializeField] private List<GameObject> _indicators;
-        [SerializeField] private GameObject _ball;
         [SerializeField] private Transform _direction;
         [SerializeField] private float _defaultForce;
 
@@ -21,12 +23,6 @@ namespace MangoramaStudio.Scripts.Behaviours
             for (int i = 0; i < _indicators.Count; i++)
             {
                 _indicators[i].transform.position = GetIndicatorPositions(_direction.transform, _direction.forward, _defaultForce, i * 0.1f);
-            }
-
-            if (Input.GetKeyDown("space"))
-            {
-                GameObject ball = Instantiate(_ball, _direction.transform.position, Quaternion.identity);
-                ball.GetComponent<Rigidbody>().AddForce(_direction.forward.normalized * _defaultForce, ForceMode.VelocityChange);
             }
         }
 
