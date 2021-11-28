@@ -75,5 +75,10 @@ namespace Assets.Game.Scripts.Throwables
                 _isOnCooldown = true;
             }
         }
+
+        public WeaponType GetWeaponType()
+        {
+            return WeaponType.Throwable;
+        }
     }
 }

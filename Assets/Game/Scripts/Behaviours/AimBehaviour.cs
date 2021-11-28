@@ -1,4 +1,5 @@
-﻿using Cinemachine;
+﻿using Assets.Game.Scripts.Interfaces;
+using Cinemachine;
 using System.Collections;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Assets.Game.Scripts.Behaviours
         public Transform AimTransform => _aimTransform;
 
         [SerializeField] private Camera _tpsCamera;
+        [SerializeField] private CinemachineFreeLook _cinemachineFreeLook;
         [SerializeField] private Transform _aimTransform;
 
         [SerializeField] private float _testAimValue;
@@ -19,7 +21,7 @@ namespace Assets.Game.Scripts.Behaviours
             {
                 Ray ray = new Ray(_tpsCamera.transform.position, _tpsCamera.transform.forward * _testAimValue);
                 RaycastHit hit;
-                if(Physics.Raycast(ray,out hit))
+                if(_soldierCharacterController.GunnerBehaviour.CurrentGun.GetWeaponType() != WeaponType.Throwable && Physics.Raycast(ray,out hit))
                 {
                     _aimTransform.position = hit.point;
                 }
@@ -27,6 +29,8 @@ namespace Assets.Game.Scripts.Behaviours
                 {
                   _aimTransform.position = _tpsCamera.transform.position + _tpsCamera.transform.forward * _testAimValue; // 40 depends on gun range
                 }
+
+                _cinemachineFreeLook.m_Lens.FieldOfView = 30f;
             }
         }
 

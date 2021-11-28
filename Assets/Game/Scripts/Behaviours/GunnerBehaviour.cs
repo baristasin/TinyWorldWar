@@ -11,6 +11,8 @@ namespace Assets.Game.Scripts.Behaviours
 {
     public class GunnerBehaviour : BaseCharacterBehaviour
     {
+        public IWeapon CurrentGun => _currentGun;
+
         [SerializeField] private List<Gun> _guns;
         [SerializeField] private List<Throwable> _throwables;
         [SerializeField] private Transform _gunSpawnTransform;

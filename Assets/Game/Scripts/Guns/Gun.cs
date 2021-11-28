@@ -125,5 +125,10 @@ namespace Assets.Game.Scripts.Guns
         {
             return transform;
         }
+
+        public WeaponType GetWeaponType()
+        {
+            return WeaponType.Shootable;
+        }
     }
 }

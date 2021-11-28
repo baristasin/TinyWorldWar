@@ -15,7 +15,7 @@ namespace MangoramaStudio.Scripts.Behaviours
 
         private void Start()
         {
-            StartCoroutine(IndicatorToggleCo());
+            //StartCoroutine(IndicatorToggleCo());
         }
 
         private void Update()
