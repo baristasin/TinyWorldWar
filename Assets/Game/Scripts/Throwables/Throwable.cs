@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Game.Scripts.Throwables
 {
-    public class Throwable : MonoBehaviour, IWeapon
+    public abstract class Throwable : MonoBehaviour, IWeapon
     {
         [SerializeField] private CurvedIndicatorBehaviour _curvedIndicatorBehaviour;
         [SerializeField] private ThrowableAmmo _throwableBullet;
