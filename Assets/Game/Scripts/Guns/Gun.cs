@@ -1,10 +1,11 @@
 ﻿using Assets.Game.Scripts.Bullets;
+using Assets.Game.Scripts.Interfaces;
 using System.Collections;
 using UnityEngine;
 
 namespace Assets.Game.Scripts.Guns
 {
-    public abstract class Gun : MonoBehaviour
+    public abstract class Gun : MonoBehaviour,IWeapon
     {
         public float InitializeInterval => _initializeInterval;
 
@@ -14,6 +15,7 @@ namespace Assets.Game.Scripts.Guns
         [SerializeField] protected float _firingRate;
         [SerializeField] protected int _magazineTotalSize;
         [SerializeField] protected float _reloadTime;
+        [SerializeField] protected ParticleSystem _shootEffect;
 
         protected bool _isInitialized;
         protected bool _isOnCooldown;
@@ -76,6 +78,11 @@ namespace Assets.Game.Scripts.Guns
             }
         }
 
+        public virtual void OnPlayerAimToggle(bool toggle)
+        {
+
+        }
+
         public void Shoot()
         {
             if (_isInitialized)
@@ -83,6 +90,7 @@ namespace Assets.Game.Scripts.Guns
                 if (!_isOnCooldown && _currentMagazineSize > 0)
                 {
                     //ShootLogic
+                    _shootEffect.Play();
                     var bullet = Instantiate(_bulletPrefab, _muzzleTransform.position, _muzzleTransform.rotation); // Object Pooling
                     _isOnCooldown = true;
                     _cooldown = _firingRate;
@@ -106,6 +114,16 @@ namespace Assets.Game.Scripts.Guns
             _currentMagazineSize = _magazineTotalSize;
             _isReloading = false;
             _reloadingRoutine = null;
+        }
+
+        public GameObject GetGameobject()
+        {
+            return gameObject;
+        }
+
+        public Transform GetTransform()
+        {
+            return transform;
         }
     }
 }
