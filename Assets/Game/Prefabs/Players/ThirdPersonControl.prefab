@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 8772164148224557838}
   - component: {fileID: 8772164148224557837}
   - component: {fileID: 8772164148224557826}
+  - component: {fileID: 1578755258965310425}
   - component: {fileID: 8772164148224557836}
   m_Layer: 0
   m_Name: ThirdPersonControl
@@ -364,7 +365,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8772164148224557834}
-  m_LocalRotation: {x: -0, y: 0.9998483, z: -0, w: -0.017419457}
+  m_LocalRotation: {x: 0, y: 0.9998483, z: -0, w: -0.017417442}
   m_LocalPosition: {x: -63.02493, y: 32.77, z: 29.334007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -407,6 +408,7 @@ MonoBehaviour:
   _characterHitDetectorBehaviour: {fileID: 8772164148224557838}
   _gunnerBehaviour: {fileID: 8772164148224557837}
   _aimBehaviour: {fileID: 8772164148224557826}
+  _playerInterfaceNotifierBehaviour: {fileID: 0}
 --- !u!114 &8772164148224557832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +477,18 @@ MonoBehaviour:
   _tpsCamera: {fileID: 0}
   _aimTransform: {fileID: 8772164148202811312}
   _testAimValue: 50
+--- !u!114 &1578755258965310425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772164148224557834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff0abda8b8e9474594031e110998e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &8772164148224557836
 BoxCollider:
   m_ObjectHideFlags: 0
