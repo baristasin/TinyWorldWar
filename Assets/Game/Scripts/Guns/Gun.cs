@@ -1,5 +1,6 @@
 ﻿using Assets.Game.Scripts.Bullets;
 using Assets.Game.Scripts.Interfaces;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,6 +8,12 @@ namespace Assets.Game.Scripts.Guns
 {
     public abstract class Gun : MonoBehaviour,IWeapon
     {
+        public event Action OnGunShoot;
+        public event Action OnGunReload;
+
+        public event EventHandler OnWeaponShoot;
+        public event EventHandler OnWeaponReload;
+
         public float InitializeInterval => _initializeInterval;
 
         [SerializeField] protected Transform _muzzleTransform;
@@ -25,6 +32,8 @@ namespace Assets.Game.Scripts.Guns
 
         protected bool _isReloading;
 
+        protected bool _isFirstInitialize; // temp
+
         private Coroutine _reloadingRoutine;
 
         private void Start()
@@ -34,6 +43,12 @@ namespace Assets.Game.Scripts.Guns
 
         public void Initialize(Transform holdTransform)
         {
+            if (!_isFirstInitialize)
+            {
+                _isFirstInitialize = true;
+                _currentMagazineSize = _magazineTotalSize;
+            }
+
             StartCoroutine(InitializeCo());
             _holdTransform = holdTransform;
             Debug.Log("Gun initializing");
@@ -95,6 +110,7 @@ namespace Assets.Game.Scripts.Guns
                     _isOnCooldown = true;
                     _cooldown = _firingRate;
                     _currentMagazineSize--;
+                    OnWeaponShoot?.Invoke(null,null);
                 }
             }
         }
@@ -114,6 +130,7 @@ namespace Assets.Game.Scripts.Guns
             _currentMagazineSize = _magazineTotalSize;
             _isReloading = false;
             _reloadingRoutine = null;
+            OnWeaponReload?.Invoke(null, null);
         }
 
         public GameObject GetGameobject()
@@ -124,6 +141,16 @@ namespace Assets.Game.Scripts.Guns
         public Transform GetTransform()
         {
             return transform;
+        }
+
+        public int GetMagazineTotalSize()
+        {
+            return _magazineTotalSize;
+        }
+
+        public int GetCurrentAmmoInMagazine()
+        {
+            return _currentMagazineSize;
         }
     }
 }
