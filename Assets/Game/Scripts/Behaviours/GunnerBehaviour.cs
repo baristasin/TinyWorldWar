@@ -11,6 +11,8 @@ namespace Assets.Game.Scripts.Behaviours
 {
     public class GunnerBehaviour : BaseCharacterBehaviour
     {
+        public IWeapon CurrentGun => _currentGun;
+
         [SerializeField] private List<Gun> _guns;
         [SerializeField] private List<Throwable> _throwables;
         [SerializeField] private Transform _gunSpawnTransform;
@@ -72,31 +74,39 @@ namespace Assets.Game.Scripts.Behaviours
         {
             base.Activate();
 
-            ActivateGun(_currentGun);
+            ChangeGun(true,true);
         }
 
-        public void ChangeGun(bool isNext)
+        public void ChangeGun(bool isNext, bool isFirst = false)
         {
-            int currentIndex = 0;
-            for (int i = 0; i < _weapons.Count; i++)
+            int nextIndex = 0;
+            int previousIndex = 0;
+
+            if (!isFirst)
             {
-                if(_weapons[i] == _currentGun)
+                int currentIndex = 0;
+                for (int i = 0; i < _weapons.Count; i++)
                 {
-                    currentIndex = i;
-                    break;
+                    if (_weapons[i] == _currentGun)
+                    {
+                        currentIndex = i;
+                        break;
+                    }
                 }
-            }
 
-            var nextIndex = currentIndex + 1 % _weapons.Count;
-            var previousIndex = currentIndex - 1 % _weapons.Count;
+                nextIndex = currentIndex + 1 % _weapons.Count;
+                previousIndex = currentIndex - 1 % _weapons.Count;
 
-            if (previousIndex < 0)
-            {
-                previousIndex += _weapons.Count;
+                if (previousIndex < 0)
+                {
+                    previousIndex += _weapons.Count;
+                }
             }
 
             if (_currentGun.GetGameobject())
             {
+                _currentGun.OnWeaponReload -= WeaponReload;
+                _currentGun.OnWeaponShoot -= WeaponShoot;
                 _currentGun.OnPlayerAimToggle(false);
                 _currentGun.DeactivateGun();
                 _currentGun.GetGameobject().SetActive(false);
@@ -104,11 +114,24 @@ namespace Assets.Game.Scripts.Behaviours
 
             _currentGun = isNext == true ? _weapons[nextIndex % _weapons.Count] : _weapons[previousIndex];
 
+            _currentGun.OnWeaponReload += WeaponReload;
+            _currentGun.OnWeaponShoot += WeaponShoot;
+
             ActivateGun(_currentGun);
         }
 
-        private void ActivateGun(IWeapon gun)
+        private void WeaponShoot(object sender, System.EventArgs e)
         {
+            _soldierCharacterController.PlayerInterfaceNotifierBehaviour.NotifyPlayerInterface();
+        }
+
+        private void WeaponReload(object sender, System.EventArgs e)
+        {
+            _soldierCharacterController.PlayerInterfaceNotifierBehaviour.NotifyPlayerInterface();
+        }
+
+        private void ActivateGun(IWeapon gun)
+        {            
             gun.GetTransform().position = _gunSpawnTransform.transform.position;
             gun.GetTransform().rotation = _gunSpawnTransform.transform.rotation;
 
@@ -116,7 +139,7 @@ namespace Assets.Game.Scripts.Behaviours
             gun.GetTransform().rotation = _gunInitializedTransform.transform.rotation;
 
             gun.GetGameobject().SetActive(true);
-            gun.Initialize(_gunInitializedTransform);
+            gun.Initialize(_gunInitializedTransform);            
         }
 
         public void ShootCurrentGun()
