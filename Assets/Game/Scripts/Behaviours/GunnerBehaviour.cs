@@ -117,6 +117,8 @@ namespace Assets.Game.Scripts.Behaviours
             _currentGun.OnWeaponReload += WeaponReload;
             _currentGun.OnWeaponShoot += WeaponShoot;
 
+            _soldierCharacterController.PlayerInterfaceNotifierBehaviour.NotifyPlayerInterface();
+
             ActivateGun(_currentGun);
         }
 

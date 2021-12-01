@@ -476,7 +476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tpsCamera: {fileID: 0}
   _aimTransform: {fileID: 8772164148202811312}
-  _testAimValue: 50
+  _aimValue: 0
 --- !u!114 &1578755258965310425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,25 +764,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7710195252090338510, guid: 39e545d580aec2c44b19035a5e04d70f,
-        type: 3}
-      propertyPath: _reloadTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7710195252090338510, guid: 39e545d580aec2c44b19035a5e04d70f,
-        type: 3}
-      propertyPath: _magazineTotalSize
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 7710195252090338511, guid: 39e545d580aec2c44b19035a5e04d70f,
         type: 3}
       propertyPath: m_Name
       value: AssaultRifleGun
-      objectReference: {fileID: 0}
-    - target: {fileID: 7710195252090338511, guid: 39e545d580aec2c44b19035a5e04d70f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39e545d580aec2c44b19035a5e04d70f, type: 3}

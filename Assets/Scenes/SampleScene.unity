@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 0
+    m_Bias: -180
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -1158,7 +1158,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649104828}
-  m_LocalRotation: {x: 0.172583, y: 0.000000020537813, z: -0.0000000035984726, w: 0.984995}
+  m_LocalRotation: {x: 0.0000000034730263, y: 0.984995, z: -0.17258301, w: 0.000000019821844}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1232,8 +1232,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651796917}
-  m_LocalRotation: {x: 0.1366892, y: 0.000000019056753, z: -0.0000000026295335, w: 0.990614}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.013101062, y: -0.9860534, z: 0.13605985, w: 0.09494605}
+  m_LocalPosition: {x: 1.6216774, y: 0, z: -0.156147}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6004450}
@@ -1613,7 +1613,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 0
+    m_Bias: -180
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -1881,8 +1881,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.15499736, y: 0.000000034549906, z: 6.1675186e-11, w: 0.9879149}
-  m_LocalPosition: {x: -64.43764, y: 36.322567, z: 19.633526}
+  m_LocalRotation: {x: 0.0000000020953896, y: 0.9879149, z: -0.15499733, w: -0.000000029784337}
+  m_LocalPosition: {x: -64.43764, y: 36.322567, z: 36.63145}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2188,7 +2188,7 @@ GameObject:
   - component: {fileID: 1310452700}
   - component: {fileID: 1310452699}
   m_Layer: 0
-  m_Name: ThirdPersonCamera
+  m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2274,7 +2274,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 0
+    m_Bias: -180
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -2303,7 +2303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310452698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -64.43764, y: 36.322567, z: 19.633526}
+  m_LocalPosition: {x: -64.43764, y: 36.322567, z: 36.63145}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 649104830}
@@ -2700,7 +2700,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 0
+    m_Bias: -180
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -2989,7 +2989,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846290361}
-  m_LocalRotation: {x: 0.15463792, y: 0.000000016999413, z: -0.0000000026607594, w: 0.98797125}
+  m_LocalRotation: {x: -0.0000000013856785, y: 0.98797125, z: -0.15463789, w: -0.000000008853008}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3420,6 +3420,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8772164147128634137, guid: da1350916d434604bb10b7c6d9085d86,
+        type: 3}
+      propertyPath: m_Name
+      value: FollowObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 8772164148224557826, guid: da1350916d434604bb10b7c6d9085d86,
+        type: 3}
+      propertyPath: _aimValue
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 8772164148224557826, guid: da1350916d434604bb10b7c6d9085d86,
         type: 3}
       propertyPath: _tpsCamera
