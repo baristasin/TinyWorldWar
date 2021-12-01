@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MangoramaStudio.Scripts.Behaviours
+namespace Assets.Game.Scripts.Behaviours
 {
     public class CurvedIndicatorBehaviour : MonoBehaviour
     {

@@ -1,5 +1,4 @@
-﻿using MangoramaStudio.Scripts.Behaviours;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Assets.Game.Scripts.Throwables

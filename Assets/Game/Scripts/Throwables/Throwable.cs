@@ -1,6 +1,6 @@
+using Assets.Game.Scripts.Behaviours;
 using Assets.Game.Scripts.Bullets;
 using Assets.Game.Scripts.Interfaces;
-using MangoramaStudio.Scripts.Behaviours;
 using System;
 using System.Collections;
 using System.Collections.Generic;

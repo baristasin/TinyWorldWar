@@ -11,13 +11,13 @@ namespace Assets.Game.Scripts.Behaviours
         [SerializeField] private Camera _tpsCamera;
         [SerializeField] private Transform _aimTransform;
 
-        [SerializeField] private float _testAimValue;
+        [SerializeField] private float _aimValue;
 
         private void Update()
         {
             if(_isInitialized && _isActivated)
             {
-                Ray ray = new Ray(_tpsCamera.transform.position, _tpsCamera.transform.forward * _testAimValue);
+                Ray ray = new Ray(_tpsCamera.transform.position, _tpsCamera.transform.forward * _aimValue);
                 RaycastHit hit;
                 if(Physics.Raycast(ray,out hit))
                 {
@@ -25,7 +25,7 @@ namespace Assets.Game.Scripts.Behaviours
                 }
                 else
                 {
-                  _aimTransform.position = _tpsCamera.transform.position + _tpsCamera.transform.forward * _testAimValue; // 40 depends on gun range
+                  _aimTransform.position = _tpsCamera.transform.position + _tpsCamera.transform.forward * _aimValue; // 40 depends on gun range
                 }
             }
         }
