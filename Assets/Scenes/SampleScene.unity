@@ -500,8 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAvatarImage: {fileID: 0}
-  _playerCurrentHealthText: {fileID: 0}
-  _playerMaxHealthText: {fileID: 0}
+  _healthFillImage: {fileID: 1514302584}
   _playerAmmoInMagazine: {fileID: 767208120}
   _playerAmmoTotal: {fileID: 372185101}
 --- !u!1 &266756985
@@ -1158,7 +1157,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649104828}
-  m_LocalRotation: {x: 0.0000000034730263, y: 0.984995, z: -0.17258301, w: 0.000000019821844}
+  m_LocalRotation: {x: 0.0000000033200336, y: 0.984995, z: -0.17258301, w: 0.00000001894866}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1232,8 +1231,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651796917}
-  m_LocalRotation: {x: 0.013101062, y: -0.9860534, z: 0.13605985, w: 0.09494605}
-  m_LocalPosition: {x: 1.6216774, y: 0, z: -0.156147}
+  m_LocalRotation: {x: -0.0000000026295335, y: 0.990614, z: -0.1366892, w: -0.000000019056753}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6004450}
@@ -1881,7 +1880,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.0000000020953896, y: 0.9879149, z: -0.15499733, w: -0.000000029784337}
+  m_LocalRotation: {x: 0.0000000021823525, y: 0.9879149, z: -0.15499733, w: -0.000000029686634}
   m_LocalPosition: {x: -64.43764, y: 36.322567, z: 36.63145}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2868,10 +2867,10 @@ RectTransform:
   m_Father: {fileID: 195410453}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -3027.492, y: -756.5244}
-  m_SizeDelta: {x: 797.3372, y: 126.6387}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 812.50806, y: 323.4756}
+  m_SizeDelta: {x: 797.33716, y: 126.63867}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1715498995
 MonoBehaviour:
@@ -2911,18 +2910,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715498993}
   m_CullTransparentMesh: 1
---- !u!114 &1774452489 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1578755258965310425, guid: da1350916d434604bb10b7c6d9085d86,
-    type: 3}
-  m_PrefabInstance: {fileID: 8772164147459480698}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ff0abda8b8e9474594031e110998e77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1846290361
 GameObject:
   m_ObjectHideFlags: 3
@@ -2989,7 +2976,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846290361}
-  m_LocalRotation: {x: -0.0000000013856785, y: 0.98797125, z: -0.15463789, w: -0.000000008853008}
+  m_LocalRotation: {x: -0.0000000013303795, y: 0.98797125, z: -0.15463789, w: -0.000000008499706}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3420,16 +3407,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8772164147128634137, guid: da1350916d434604bb10b7c6d9085d86,
-        type: 3}
-      propertyPath: m_Name
-      value: FollowObject
-      objectReference: {fileID: 0}
-    - target: {fileID: 8772164148224557826, guid: da1350916d434604bb10b7c6d9085d86,
-        type: 3}
-      propertyPath: _aimValue
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 8772164148224557826, guid: da1350916d434604bb10b7c6d9085d86,
         type: 3}
       propertyPath: _tpsCamera
@@ -3505,10 +3482,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8772164148224557839, guid: da1350916d434604bb10b7c6d9085d86,
-        type: 3}
-      propertyPath: _playerInterfaceNotifierBehaviour
-      value: 
-      objectReference: {fileID: 1774452489}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da1350916d434604bb10b7c6d9085d86, type: 3}

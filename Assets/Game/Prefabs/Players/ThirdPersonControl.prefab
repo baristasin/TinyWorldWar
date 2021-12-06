@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8772164147128634142}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: FollowObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,6 +350,7 @@ GameObject:
   - component: {fileID: 8772164148224557837}
   - component: {fileID: 8772164148224557826}
   - component: {fileID: 1578755258965310425}
+  - component: {fileID: 968564353}
   - component: {fileID: 8772164148224557836}
   m_Layer: 0
   m_Name: ThirdPersonControl
@@ -408,7 +409,8 @@ MonoBehaviour:
   _characterHitDetectorBehaviour: {fileID: 8772164148224557838}
   _gunnerBehaviour: {fileID: 8772164148224557837}
   _aimBehaviour: {fileID: 8772164148224557826}
-  _playerInterfaceNotifierBehaviour: {fileID: 0}
+  _playerInterfaceNotifierBehaviour: {fileID: 1578755258965310425}
+  _characterHealthBehaviour: {fileID: 968564353}
 --- !u!114 &8772164148224557832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,7 +478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tpsCamera: {fileID: 0}
   _aimTransform: {fileID: 8772164148202811312}
-  _aimValue: 0
+  _aimValue: 40
 --- !u!114 &1578755258965310425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +491,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff0abda8b8e9474594031e110998e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &968564353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772164148224557834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f0495fde878c5479ae8d6a26268513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
 --- !u!65 &8772164148224557836
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -18,12 +18,7 @@ namespace Assets.Game.Scripts.Behaviours
         public override void Activate()
         {
             base.Activate();
-            var gunnerBehaviour = _soldierCharacterController.GunnerBehaviour;
-
-            _playerInterfaceSegmentData.PlayerAmmoTotal = gunnerBehaviour.CurrentGun.GetMagazineTotalSize();
-            _playerInterfaceSegmentData.PlayerAmmoInMagazine = gunnerBehaviour.CurrentGun.GetCurrentAmmoInMagazine();
-
-            _soldierCharacterController.GameManager.UIManager.InGamePanel.UpdatePlayerInterfaceSegment(_playerInterfaceSegmentData);
+            NotifyPlayerInterface();                      
         }
 
         public void NotifyPlayerInterface()
@@ -32,6 +27,7 @@ namespace Assets.Game.Scripts.Behaviours
 
             _playerInterfaceSegmentData.PlayerAmmoTotal = gunnerBehaviour.CurrentGun.GetMagazineTotalSize();
             _playerInterfaceSegmentData.PlayerAmmoInMagazine = gunnerBehaviour.CurrentGun.GetCurrentAmmoInMagazine();
+            _playerInterfaceSegmentData.PlayerCurrentHealth = _soldierCharacterController.CharacterHealthBehaviour.CurrentHealth;
 
             _soldierCharacterController.GameManager.UIManager.InGamePanel.UpdatePlayerInterfaceSegment(_playerInterfaceSegmentData);
         }

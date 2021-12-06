@@ -17,16 +17,14 @@ namespace Assets.Game.Scripts.UI
     public class InGamePanelPlayerInterfaceSegment : MonoBehaviour
     {
         [SerializeField] private Image _playerAvatarImage;
-        [SerializeField] private Text _playerCurrentHealthText;
-        [SerializeField] private Text _playerMaxHealthText;
+        [SerializeField] private Image _healthFillImage;        
         [SerializeField] private Text _playerAmmoInMagazine;
         [SerializeField] private Text _playerAmmoTotal;
 
         public void UpdateView(PlayerInterfaceSegmentData playerInterfaceSegmentData)
         {
             //_playerAvatarImage.sprite = playerInterfaceSegmentData.PlayerAvatar;
-            //_playerCurrentHealthText.text = playerInterfaceSegmentData.PlayerCurrentHealth.ToString();
-            //_playerMaxHealthText.text = playerInterfaceSegmentData.PlayerMaxHealth.ToString();
+            _healthFillImage.fillAmount = playerInterfaceSegmentData.PlayerCurrentHealth / 100f;
             _playerAmmoInMagazine.text = playerInterfaceSegmentData.PlayerAmmoInMagazine.ToString();
             _playerAmmoTotal.text = playerInterfaceSegmentData.PlayerAmmoTotal.ToString();
         }

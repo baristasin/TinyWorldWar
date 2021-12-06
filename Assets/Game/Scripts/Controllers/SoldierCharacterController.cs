@@ -13,12 +13,14 @@ namespace Assets.Game.Scripts.Controllers
         public PlayerMovementBehaviour PlayerMovementBehaviour => _playerMovementBehaviour;
         public GunnerBehaviour GunnerBehaviour => _gunnerBehaviour;
         public AimBehaviour AimBehaviour => _aimBehaviour;
+        public CharacterHealthBehaviour CharacterHealthBehaviour => _characterHealthBehaviour;
         public PlayerInterfaceNotifierBehaviour PlayerInterfaceNotifierBehaviour => _playerInterfaceNotifierBehaviour;
 
         [SerializeField] private PlayerMovementBehaviour _playerMovementBehaviour;
         [SerializeField] private CharacterHitDetectorBehaviour _characterHitDetectorBehaviour;
         [SerializeField] private GunnerBehaviour _gunnerBehaviour;
         [SerializeField] private AimBehaviour _aimBehaviour;
+        [SerializeField] private CharacterHealthBehaviour _characterHealthBehaviour;
         [SerializeField] private PlayerInterfaceNotifierBehaviour _playerInterfaceNotifierBehaviour;
 
         public override void Initialize(GameManager gameManager)
@@ -29,13 +31,16 @@ namespace Assets.Game.Scripts.Controllers
             _characterHitDetectorBehaviour.Initialize(this);
             _gunnerBehaviour.Initialize(this);
             _aimBehaviour.Initialize(this);
+            _characterHealthBehaviour.Initialize(this);
             _playerInterfaceNotifierBehaviour.Initialize(this);
 
             _playerMovementBehaviour.Activate();
             _characterHitDetectorBehaviour.Activate();
             _gunnerBehaviour.Activate();
             _aimBehaviour.Activate();
+            _characterHealthBehaviour.Activate();
             _playerInterfaceNotifierBehaviour.Activate();
+            
         }
 
         private void Update()
@@ -54,7 +59,8 @@ namespace Assets.Game.Scripts.Controllers
         public void DetectorHit(LayerMask layer)
         {
             var damage = GameManager.BattleController.GetDamageAmount(layer);
-            //Health segmentine damage'i yolla.
+            _characterHealthBehaviour.UpdateHealth(-damage);
+            _playerInterfaceNotifierBehaviour.NotifyPlayerInterface();
         }
     }
 }
