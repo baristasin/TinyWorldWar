@@ -13,6 +13,7 @@ namespace Assets.Game.Scripts.Controllers
         public PlayerMovementBehaviour PlayerMovementBehaviour => _playerMovementBehaviour;
         public GunnerBehaviour GunnerBehaviour => _gunnerBehaviour;
         public AimBehaviour AimBehaviour => _aimBehaviour;
+        public CharacterSoundBehaviour CharacterSoundBehaviour => _characterSoundBehaviour;
         public CharacterHealthBehaviour CharacterHealthBehaviour => _characterHealthBehaviour;
         public PlayerInterfaceNotifierBehaviour PlayerInterfaceNotifierBehaviour => _playerInterfaceNotifierBehaviour;
 
@@ -20,8 +21,9 @@ namespace Assets.Game.Scripts.Controllers
         [SerializeField] private CharacterHitDetectorBehaviour _characterHitDetectorBehaviour;
         [SerializeField] private GunnerBehaviour _gunnerBehaviour;
         [SerializeField] private AimBehaviour _aimBehaviour;
+        [SerializeField] private CharacterSoundBehaviour _characterSoundBehaviour;
         [SerializeField] private CharacterHealthBehaviour _characterHealthBehaviour;
-        [SerializeField] private PlayerInterfaceNotifierBehaviour _playerInterfaceNotifierBehaviour;
+        [SerializeField] private PlayerInterfaceNotifierBehaviour _playerInterfaceNotifierBehaviour;        
 
         public override void Initialize(GameManager gameManager)
         {
@@ -32,6 +34,7 @@ namespace Assets.Game.Scripts.Controllers
             _gunnerBehaviour.Initialize(this);
             _aimBehaviour.Initialize(this);
             _characterHealthBehaviour.Initialize(this);
+            _characterSoundBehaviour.Initialize(this);
             _playerInterfaceNotifierBehaviour.Initialize(this);
 
             _playerMovementBehaviour.Activate();
@@ -39,6 +42,7 @@ namespace Assets.Game.Scripts.Controllers
             _gunnerBehaviour.Activate();
             _aimBehaviour.Activate();
             _characterHealthBehaviour.Activate();
+            _characterSoundBehaviour.Activate();
             _playerInterfaceNotifierBehaviour.Activate();
             
         }
