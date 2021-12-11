@@ -12,17 +12,18 @@ namespace Assets.Game.Scripts.Managers
 
         public InputController InputController;
         public BattleController BattleController;
+        public AudioController AudioController;
         public UIManager UIManager;
 
         [SerializeField] private SoldierCharacterController _soldierCharacterController; 
         private void Start()
         {
-            _soldierCharacterController.Initialize(this); // Temp
-
+            AudioController.Initialize(this);
             InputController.Initialize(this);
             BattleController.Initialize(this);
             UIManager.Initialize(this);
 
+            _soldierCharacterController.Initialize(this); // Temp
         }
     }
 }
