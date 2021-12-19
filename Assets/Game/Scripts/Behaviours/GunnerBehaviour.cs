@@ -49,9 +49,9 @@ namespace Assets.Game.Scripts.Behaviours
 
         private void Update()
         {
-            if (_soldierCharacterController.PlayerMovementBehaviour.IsAiming)
+            if (_soldierCharacterController.PlayerCharacterController.PlayerMovementBehaviour.IsAiming)
             {
-                _gunInitializedTransform.transform.LookAt(_soldierCharacterController.AimBehaviour.AimTransform);
+                _gunInitializedTransform.transform.LookAt(_soldierCharacterController.PlayerCharacterController.AimBehaviour.AimTransform);
                 _currentGun.OnPlayerAimToggle(true);
             }
             else
@@ -117,19 +117,19 @@ namespace Assets.Game.Scripts.Behaviours
             _currentGun.OnWeaponReload += WeaponReload;
             _currentGun.OnWeaponShoot += WeaponShoot;
 
-            _soldierCharacterController.PlayerInterfaceNotifierBehaviour.NotifyPlayerInterface();
+            _soldierCharacterController.PlayerCharacterController.PlayerInterfaceNotifierBehaviour.NotifyPlayerInterface();
 
             ActivateGun(_currentGun);
         }
 
         private void WeaponShoot(object sender, System.EventArgs e)
         {
-            _soldierCharacterController.PlayerInterfaceNotifierBehaviour.NotifyPlayerInterface();
+            _soldierCharacterController.PlayerCharacterController.PlayerInterfaceNotifierBehaviour.NotifyPlayerInterface();
         }
 
         private void WeaponReload(object sender, System.EventArgs e)
         {
-            _soldierCharacterController.PlayerInterfaceNotifierBehaviour.NotifyPlayerInterface();
+            _soldierCharacterController.PlayerCharacterController.PlayerInterfaceNotifierBehaviour.NotifyPlayerInterface();
         }
 
         private void ActivateGun(IWeapon gun)

@@ -23,7 +23,7 @@ namespace Assets.Game.Scripts.Behaviours
 
         public void NotifyPlayerInterface()
         {
-            var gunnerBehaviour = _soldierCharacterController.GunnerBehaviour;
+            var gunnerBehaviour = _soldierCharacterController.PlayerCharacterController.GunnerBehaviour;
 
             _playerInterfaceSegmentData.PlayerAmmoTotal = gunnerBehaviour.CurrentGun.GetMagazineTotalSize();
             _playerInterfaceSegmentData.PlayerAmmoInMagazine = gunnerBehaviour.CurrentGun.GetCurrentAmmoInMagazine();

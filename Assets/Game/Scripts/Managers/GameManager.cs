@@ -15,7 +15,8 @@ namespace Assets.Game.Scripts.Managers
         public AudioController AudioController;
         public UIManager UIManager;
 
-        [SerializeField] private SoldierCharacterController _soldierCharacterController; 
+        [SerializeField] private SoldierCharacterController _soldierCharacterController;
+        [SerializeField] private AICharacterController _aiCharacterController;
         private void Start()
         {
             AudioController.Initialize(this);
@@ -24,6 +25,7 @@ namespace Assets.Game.Scripts.Managers
             UIManager.Initialize(this);
 
             _soldierCharacterController.Initialize(this); // Temp
+            _aiCharacterController.Initialize(this);
         }
     }
 }
