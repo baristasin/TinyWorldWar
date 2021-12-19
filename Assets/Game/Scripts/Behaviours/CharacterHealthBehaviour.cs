@@ -12,11 +12,27 @@ namespace Assets.Game.Scripts.Behaviours
 
         private int _currentHealth;
 
+        private bool _isDead;
+
+        private Coroutine _healthRegenRoutine;
+
         public override void Initialize(SoldierCharacterController soldierCharacterController)
         {
             base.Initialize(soldierCharacterController);
 
             _currentHealth = _maxHealth;
+
+            _healthRegenRoutine = StartCoroutine(HealthRegenCo());
+        }
+
+        private IEnumerator HealthRegenCo()
+        {
+            while (_isActivated && _isInitialized && !_isDead)
+            {
+                yield return new WaitForSeconds(.5f);
+                _currentHealth += 1;
+                Mathf.Clamp(_currentHealth, 0, 100);
+            }
         }
 
         public override void Activate()
@@ -31,15 +47,16 @@ namespace Assets.Game.Scripts.Behaviours
 
         public void UpdateHealth(int amount)
         {
-            if(!_isInitialized || !_isActivated)
+            if (!_isInitialized || !_isActivated)
             {
                 return;
             }
 
             _currentHealth += amount;
 
-            if(_currentHealth < 0)
+            if (_currentHealth < 0)
             {
+                _isDead = true;
                 Debug.Log("PlayerDead");
             }
         }
