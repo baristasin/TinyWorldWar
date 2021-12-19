@@ -17,7 +17,7 @@ namespace Assets.Game.Scripts.Behaviours
         {
             base.Initialize(soldierCharacterController);
         }
-       
+
         public override void Activate()
         {
             base.Activate();
@@ -26,6 +26,13 @@ namespace Assets.Game.Scripts.Behaviours
         private void Update()
         {
             if (!_isActivated || !_isInitialized) return;
+
+            _navMeshAgent.updateRotation = _soldierCharacterController.AICharacterController.AIaimBehaviour.IsAiming;
+
+            if (_soldierCharacterController.AICharacterController.AIaimBehaviour.IsAiming)
+            {
+                transform.LookAt(_soldierCharacterController.AICharacterController.AIaimBehaviour.AimTarget);
+            }
 
             _navMeshAgent.SetDestination(_targetPosition);
         }

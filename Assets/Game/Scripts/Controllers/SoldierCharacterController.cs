@@ -11,7 +11,7 @@ namespace Assets.Game.Scripts.Controllers
     {
         public AICharacterController AICharacterController => _aICharacterController;
         public PlayerCharacterController PlayerCharacterController => _playerCharacterController;
-
+        public GunnerBehaviour GunnerBehaviour => _gunnerBehaviour;
         public CharacterHitDetectorBehaviour CharacterHitDetectorBehaviour => _characterHitDetectorBehaviour;
         public CharacterSoundBehaviour CharacterSoundBehaviour => _characterSoundBehaviour;
         public CharacterHealthBehaviour CharacterHealthBehaviour => _characterHealthBehaviour;
@@ -20,6 +20,7 @@ namespace Assets.Game.Scripts.Controllers
         [SerializeField] private AICharacterController _aICharacterController;
 
         [SerializeField] protected CharacterHitDetectorBehaviour _characterHitDetectorBehaviour;
+        [SerializeField] protected GunnerBehaviour _gunnerBehaviour;
         [SerializeField] protected CharacterSoundBehaviour _characterSoundBehaviour;
         [SerializeField] protected CharacterHealthBehaviour _characterHealthBehaviour;
 
