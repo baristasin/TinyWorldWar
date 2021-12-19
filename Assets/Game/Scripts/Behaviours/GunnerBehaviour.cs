@@ -22,9 +22,10 @@ namespace Assets.Game.Scripts.Behaviours
 
         private IWeapon _currentGun;
 
+        private bool _isPlayerGunner;
+
         public override void Initialize(SoldierCharacterController soldierCharacterController)
         {
-
             _weapons = new List<IWeapon>();
 
             foreach (var weapon in _guns)
@@ -45,36 +46,57 @@ namespace Assets.Game.Scripts.Behaviours
             }
 
             _currentGun = _weapons[0];
+
+            _isPlayerGunner = soldierCharacterController.PlayerCharacterController != null ? true : false;
+
         }
 
         private void Update()
         {
-            if (_soldierCharacterController.PlayerCharacterController.PlayerMovementBehaviour.IsAiming)
+            if (_isPlayerGunner)
             {
-                _gunInitializedTransform.transform.LookAt(_soldierCharacterController.PlayerCharacterController.AimBehaviour.AimTransform);
-                _currentGun.OnPlayerAimToggle(true);
-            }
-            else
-            {
-                _gunInitializedTransform.transform.localEulerAngles = Vector3.zero;
-                _currentGun.OnPlayerAimToggle(false);
+                if (_soldierCharacterController.PlayerCharacterController.PlayerMovementBehaviour.IsAiming)
+                {
+                    _gunInitializedTransform.transform.LookAt(_soldierCharacterController.PlayerCharacterController.AimBehaviour.AimTransform);
+                    _currentGun.OnPlayerAimToggle(true);
+                }
+                else
+                {
+                    _gunInitializedTransform.transform.localEulerAngles = Vector3.zero;
+                    _currentGun.OnPlayerAimToggle(false);
+                }
+
+                #region GunSwitchLogic
+                if (Input.GetKeyDown("n"))
+                {
+                    ChangeGun(true);
+                }
+                if (Input.GetKeyDown("m"))
+                {
+                    ChangeGun(false);
+                }
+                #endregion
             }
 
-            if (Input.GetKeyDown("n"))
+            else // AI Gunner
             {
-                ChangeGun(true);
+                if (_soldierCharacterController.AICharacterController.AIaimBehaviour.IsAiming)
+                {
+                    _gunInitializedTransform.transform.LookAt(_soldierCharacterController.AICharacterController.AIaimBehaviour.AimTarget);
+                    ShootCurrentGun();
+                }
+                else
+                {
+                    _gunInitializedTransform.transform.localEulerAngles = Vector3.zero;
+                }
             }
-            if (Input.GetKeyDown("m"))
-            {
-                ChangeGun(false);
-            }
-        }        
+        }
 
         public override void Activate()
         {
             base.Activate();
 
-            ChangeGun(true,true);
+            ChangeGun(true, true);
         }
 
         public void ChangeGun(bool isNext, bool isFirst = false)
@@ -105,19 +127,24 @@ namespace Assets.Game.Scripts.Behaviours
 
             if (_currentGun.GetGameobject())
             {
-                _currentGun.OnWeaponReload -= WeaponReload;
-                _currentGun.OnWeaponShoot -= WeaponShoot;
-                _currentGun.OnPlayerAimToggle(false);
+                if (_isPlayerGunner)
+                {
+                    _currentGun.OnWeaponReload -= WeaponReload;
+                    _currentGun.OnWeaponShoot -= WeaponShoot;
+                    _currentGun.OnPlayerAimToggle(false);
+                }
                 _currentGun.DeactivateGun();
                 _currentGun.GetGameobject().SetActive(false);
             }
 
             _currentGun = isNext == true ? _weapons[nextIndex % _weapons.Count] : _weapons[previousIndex];
 
-            _currentGun.OnWeaponReload += WeaponReload;
-            _currentGun.OnWeaponShoot += WeaponShoot;
-
-            _soldierCharacterController.PlayerCharacterController.PlayerInterfaceNotifierBehaviour.NotifyPlayerInterface();
+            if (_isPlayerGunner)
+            {
+                _currentGun.OnWeaponReload += WeaponReload;
+                _currentGun.OnWeaponShoot += WeaponShoot;
+                _soldierCharacterController.PlayerCharacterController.PlayerInterfaceNotifierBehaviour.NotifyPlayerInterface();
+            }
 
             ActivateGun(_currentGun);
         }
@@ -133,7 +160,7 @@ namespace Assets.Game.Scripts.Behaviours
         }
 
         private void ActivateGun(IWeapon gun)
-        {            
+        {
             gun.GetTransform().position = _gunSpawnTransform.transform.position;
             gun.GetTransform().rotation = _gunSpawnTransform.transform.rotation;
 
@@ -141,7 +168,7 @@ namespace Assets.Game.Scripts.Behaviours
             gun.GetTransform().rotation = _gunInitializedTransform.transform.rotation;
 
             gun.GetGameobject().SetActive(true);
-            gun.Initialize(_gunInitializedTransform);            
+            gun.Initialize(_gunInitializedTransform);
         }
 
         public void ShootCurrentGun()

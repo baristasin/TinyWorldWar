@@ -9,11 +9,9 @@ namespace Assets.Game.Scripts.Controllers
     {
         public PlayerMovementBehaviour PlayerMovementBehaviour => _playerMovementBehaviour;
         public AimBehaviour AimBehaviour => _aimBehaviour;
-        public GunnerBehaviour GunnerBehaviour => _gunnerBehaviour;
         public PlayerInterfaceNotifierBehaviour PlayerInterfaceNotifierBehaviour => _playerInterfaceNotifierBehaviour;
 
         [SerializeField] private PlayerMovementBehaviour _playerMovementBehaviour;
-        [SerializeField] private GunnerBehaviour _gunnerBehaviour;
         [SerializeField] private AimBehaviour _aimBehaviour;
         [SerializeField] private PlayerInterfaceNotifierBehaviour _playerInterfaceNotifierBehaviour;
 
