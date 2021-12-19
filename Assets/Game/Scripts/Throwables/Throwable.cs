@@ -79,15 +79,15 @@ namespace Assets.Game.Scripts.Throwables
                 _isOnCooldown = true;
             }
         }
+        public int GetCurrentAmmoInMagazine()
+        {
+            return 1;
+        }
 
         public int GetMagazineTotalSize()
         {
             return _throwableCount;
         }
 
-        public int GetCurrentAmmoInMagazine()
-        {
-            return 1;
-        }
     }
 }

@@ -1,0 +1,63 @@
+﻿using Assets.Game.Scripts.Behaviours;
+using Assets.Game.Scripts.Managers;
+using System.Collections;
+using UnityEngine;
+
+namespace Assets.Game.Scripts.Controllers
+{
+    public class PlayerCharacterController : SoldierCharacterController
+    {
+        public PlayerMovementBehaviour PlayerMovementBehaviour => _playerMovementBehaviour;
+        public AimBehaviour AimBehaviour => _aimBehaviour;
+        public GunnerBehaviour GunnerBehaviour => _gunnerBehaviour;
+        public PlayerInterfaceNotifierBehaviour PlayerInterfaceNotifierBehaviour => _playerInterfaceNotifierBehaviour;
+
+        [SerializeField] private PlayerMovementBehaviour _playerMovementBehaviour;
+        [SerializeField] private GunnerBehaviour _gunnerBehaviour;
+        [SerializeField] private AimBehaviour _aimBehaviour;
+        [SerializeField] private PlayerInterfaceNotifierBehaviour _playerInterfaceNotifierBehaviour;
+
+
+        public override void Initialize(GameManager gameManager)
+        {
+            base.Initialize(gameManager);
+
+            _playerMovementBehaviour.Initialize(this);
+            _characterHitDetectorBehaviour.Initialize(this);
+            _gunnerBehaviour.Initialize(this);
+            _aimBehaviour.Initialize(this);
+            _characterHealthBehaviour.Initialize(this);
+            //_characterSoundBehaviour.Initialize(this);
+            _playerInterfaceNotifierBehaviour.Initialize(this);
+
+            _playerMovementBehaviour.Activate();
+            _characterHitDetectorBehaviour.Activate();
+            _gunnerBehaviour.Activate();
+            _aimBehaviour.Activate();
+            _characterHealthBehaviour.Activate();
+            //_characterSoundBehaviour.Activate();
+            _playerInterfaceNotifierBehaviour.Activate();
+
+        }
+
+        private void Update()
+        {
+            if (Input.GetMouseButton(0))
+            {
+                _gunnerBehaviour.ShootCurrentGun();
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                _playerMovementBehaviour.SetFiring();
+            }
+        }
+
+        public override void DetectorHit(LayerMask layer)
+        {
+            base.DetectorHit(layer);
+
+            _playerInterfaceNotifierBehaviour.NotifyPlayerInterface();
+        }
+    }
+}

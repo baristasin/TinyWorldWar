@@ -344,13 +344,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8772164148224557835}
   - component: {fileID: 8772164148224557833}
-  - component: {fileID: 8772164148224557839}
+  - component: {fileID: 1703179268221452560}
   - component: {fileID: 8772164148224557832}
   - component: {fileID: 8772164148224557838}
   - component: {fileID: 8772164148224557837}
   - component: {fileID: 8772164148224557826}
   - component: {fileID: 1578755258965310425}
   - component: {fileID: 968564353}
+  - component: {fileID: 4490441577968701756}
   - component: {fileID: 8772164148224557836}
   m_Layer: 0
   m_Name: ThirdPersonControl
@@ -393,7 +394,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8772164148224557839
+--- !u!114 &1703179268221452560
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -402,15 +403,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 8772164148224557834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 135ac0c2d97ca5849b647188c01776fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a319ce3a2149f74ca329348bc7e7f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerMovementBehaviour: {fileID: 8772164148224557832}
+  _playerCharacterController: {fileID: 1703179268221452560}
+  _aICharacterController: {fileID: 0}
   _characterHitDetectorBehaviour: {fileID: 8772164148224557838}
+  _characterSoundBehaviour: {fileID: 4490441577968701756}
+  _characterHealthBehaviour: {fileID: 968564353}
+  _playerMovementBehaviour: {fileID: 8772164148224557832}
   _gunnerBehaviour: {fileID: 8772164148224557837}
   _aimBehaviour: {fileID: 8772164148224557826}
   _playerInterfaceNotifierBehaviour: {fileID: 1578755258965310425}
-  _characterHealthBehaviour: {fileID: 968564353}
 --- !u!114 &8772164148224557832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +508,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
+--- !u!114 &4490441577968701756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772164148224557834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f6e348b9a0dfd4cabdf0758c57505d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _walkAudioSource: {fileID: 0}
+  _getDamageAudioSource: {fileID: 0}
 --- !u!65 &8772164148224557836
 BoxCollider:
   m_ObjectHideFlags: 0
