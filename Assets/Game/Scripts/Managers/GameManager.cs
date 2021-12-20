@@ -17,7 +17,7 @@ namespace Assets.Game.Scripts.Managers
         public UIManager UIManager;
 
         [SerializeField] private SoldierCharacterController _soldierCharacterController;
-        [SerializeField] private AICharacterController _aiCharacterController;
+        [SerializeField] private List<AICharacterController> _aiCharacterControllers;
         private void Start()
         {
             AudioController.Initialize(this);
@@ -27,7 +27,10 @@ namespace Assets.Game.Scripts.Managers
             HospitalController.Initialize(this);
 
             _soldierCharacterController.Initialize(this); // Temp
-            _aiCharacterController.Initialize(this);
+            foreach (var ai in _aiCharacterControllers)
+            {
+                ai.Initialize(this);
+            }
         }
     }
 }

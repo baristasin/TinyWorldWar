@@ -24,8 +24,6 @@ namespace Assets.Game.Scripts.Behaviours
             {
                 if (_currentEnemyTransform == null || _currentEnemyTransform.tag == "Dead") // There is no locked enemy
                 {
-                    Debug.Log("NO LOCKED ENEMY");
-
                     Collider[] hitColliders = Physics.OverlapSphere(transform.position, 20f/*,LayerMask.NameToLayer()*/);
                     if (hitColliders[0] != null)
                     {
@@ -36,7 +34,6 @@ namespace Assets.Game.Scripts.Behaviours
                 }
                 else
                 {
-                    Debug.Log($"LOCKED ENEMY FOUND {_currentEnemyTransform.gameObject.name}");
                     yield return new WaitForSeconds(1f);
                 }
             }
