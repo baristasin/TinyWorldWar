@@ -13,6 +13,7 @@ namespace Assets.Game.Scripts.Managers
         public InputController InputController;
         public BattleController BattleController;
         public AudioController AudioController;
+        public HospitalController HospitalController;
         public UIManager UIManager;
 
         [SerializeField] private SoldierCharacterController _soldierCharacterController;
@@ -23,6 +24,7 @@ namespace Assets.Game.Scripts.Managers
             InputController.Initialize(this);
             BattleController.Initialize(this);
             UIManager.Initialize(this);
+            HospitalController.Initialize(this);
 
             _soldierCharacterController.Initialize(this); // Temp
             _aiCharacterController.Initialize(this);

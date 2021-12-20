@@ -1366,7 +1366,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651796917}
-  m_LocalRotation: {x: -0.0000000026295335, y: 0.990614, z: -0.1366892, w: -0.000000019056753}
+  m_LocalRotation: {x: 0.0000000026295337, y: 0.990614, z: -0.1366892, w: 0.000000019056754}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2051,7 +2051,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.000000002141103, y: 0.9879149, z: -0.15499733, w: -0.00000003111192}
+  m_LocalRotation: {x: -0.000000002182353, y: 0.9879149, z: -0.15499733, w: 0.000000029686634}
   m_LocalPosition: {x: -64.43764, y: 36.322567, z: 36.63145}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3452,7 +3452,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846290361}
-  m_LocalRotation: {x: -0.0000000013303795, y: 0.98797125, z: -0.15463789, w: -0.000000008499706}
+  m_LocalRotation: {x: 0.000000001330379, y: 0.98797125, z: -0.15463789, w: 0.000000008499704}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3935,6 +3935,7 @@ GameObject:
   - component: {fileID: 2135315559}
   - component: {fileID: 2135315569}
   - component: {fileID: 2135315565}
+  - component: {fileID: 2135315570}
   - component: {fileID: 2135315558}
   m_Layer: 0
   m_Name: AI
@@ -4051,6 +4052,7 @@ MonoBehaviour:
   _characterHealthBehaviour: {fileID: 2135315560}
   _aIMovementBehaviour: {fileID: 2135315559}
   _aIAimBehaviour: {fileID: 2135315565}
+  _aIEnemyRadarBehaviour: {fileID: 2135315570}
 --- !u!114 &2135315565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4147,6 +4149,18 @@ MonoBehaviour:
   - {fileID: 344250631}
   _gunSpawnTransform: {fileID: 1130139235}
   _gunInitializedTransform: {fileID: 1363710342}
+--- !u!114 &2135315570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135315557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0a18eb2f29fde4b966e5026eeb1a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8772164147459480698
 PrefabInstance:
   m_ObjectHideFlags: 0
