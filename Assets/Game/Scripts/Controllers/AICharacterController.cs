@@ -10,10 +10,11 @@ namespace Assets.Game.Scripts.Controllers
     {
         public AIMovementBehaviour AIMovementBehaviour => _aIMovementBehaviour;
         public AIAimBehaviour AIaimBehaviour => _aIAimBehaviour;
+        public AIEnemyRadarBehaviour AIEnemyRadarBehaviour => _aIEnemyRadarBehaviour;
 
         [SerializeField] private AIMovementBehaviour _aIMovementBehaviour;
         [SerializeField] private AIAimBehaviour _aIAimBehaviour;
-        
+        [SerializeField] private AIEnemyRadarBehaviour _aIEnemyRadarBehaviour;
 
         public override void Initialize(GameManager gameManager)
         {
@@ -24,6 +25,7 @@ namespace Assets.Game.Scripts.Controllers
             _characterHealthBehaviour.Initialize(this);
             _aIAimBehaviour.Initialize(this);
             _gunnerBehaviour.Initialize(this);
+            _aIEnemyRadarBehaviour.Initialize(this);
             //_characterSoundBehaviour.Initialize(this);
 
             _aIMovementBehaviour.Activate();
@@ -31,6 +33,7 @@ namespace Assets.Game.Scripts.Controllers
             _characterHealthBehaviour.Activate();
             _aIAimBehaviour.Activate();
             _gunnerBehaviour.Activate();
+            _aIEnemyRadarBehaviour.Activate();
             //_characterSoundBehaviour.Activate();
         }
 

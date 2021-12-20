@@ -6,6 +6,7 @@ namespace Assets.Game.Scripts.Behaviours
 {
     public class CharacterHealthBehaviour : BaseCharacterBehaviour
     {
+        public bool IsDead => _isDead;
         public int CurrentHealth => _currentHealth;
 
         [SerializeField] private int _maxHealth;
@@ -58,6 +59,7 @@ namespace Assets.Game.Scripts.Behaviours
             {
                 _isDead = true;
                 Debug.Log("PlayerDead");
+                transform.tag = "Dead";
             }
         }
 
