@@ -1,7 +1,11 @@
 ﻿using Assets.Game.Scripts.Behaviours;
+using Assets.Game.Scripts.BehaviourTree;
+using Assets.Game.Scripts.BehaviourTree.Nodes;
 using Assets.Game.Scripts.Managers;
 using Sirenix.OdinInspector;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Game.Scripts.Controllers
@@ -15,6 +19,9 @@ namespace Assets.Game.Scripts.Controllers
         [SerializeField] private AIMovementBehaviour _aIMovementBehaviour;
         [SerializeField] private AIAimBehaviour _aIAimBehaviour;
         [SerializeField] private AIEnemyRadarBehaviour _aIEnemyRadarBehaviour;
+        [SerializeField] private AIBehaviourTreeConnector _aIBehaviourTreeConnector;
+
+        private Selector _topNode;
 
         public override void Initialize(GameManager gameManager)
         {
@@ -26,6 +33,7 @@ namespace Assets.Game.Scripts.Controllers
             _aIAimBehaviour.Initialize(this);
             _gunnerBehaviour.Initialize(this);
             _aIEnemyRadarBehaviour.Initialize(this);
+            _aIBehaviourTreeConnector.Initialize(this);
             //_characterSoundBehaviour.Initialize(this);
 
             _aIMovementBehaviour.Activate();
@@ -35,12 +43,34 @@ namespace Assets.Game.Scripts.Controllers
             _gunnerBehaviour.Activate();
             _aIEnemyRadarBehaviour.Activate();
             //_characterSoundBehaviour.Activate();
+
+            SetBehaviourTree();
         }
 
-        [Button]
-        public void SetDestTest(Transform testTransform)
+        private void Update()
         {
-            _aIMovementBehaviour.SetTargetPosition(testTransform.position);
+            _topNode.Evaluate();
+
+            if(_topNode.NodeState == NodeState.FAILURE)
+            {
+                Debug.Log($"TreeBehaviour: TopNodeFailure");
+            }
+        }
+
+        private void SetBehaviourTree()
+        {
+            IsThereAnEnemyNearNode isThereAnEnemyNearNode = new IsThereAnEnemyNearNode(_aIBehaviourTreeConnector);
+            ShootNode shootNode = new ShootNode(_aIBehaviourTreeConnector);
+            HealthNode healthNode = new HealthNode(_aIBehaviourTreeConnector, 15f);
+            GoNearestHospitalNode goNearestHospitalNode = new GoNearestHospitalNode(_aIBehaviourTreeConnector);
+            HasAnyAvailableAreaNode hasAnyAvailableAreaNode = new HasAnyAvailableAreaNode(_aIBehaviourTreeConnector);
+            GoToAreaNode goToAreaNode = new GoToAreaNode(_aIBehaviourTreeConnector);
+
+            Sequence objectiveSequence = new Sequence(new List<Node> { hasAnyAvailableAreaNode, goToAreaNode });
+            Sequence getHealedSequence = new Sequence(new List<Node> { healthNode, goNearestHospitalNode });
+            Sequence combatSequence = new Sequence(new List<Node> { isThereAnEnemyNearNode, shootNode });
+
+            _topNode = new Selector(new List<Node> { combatSequence, getHealedSequence, objectiveSequence });
         }
     }
 }

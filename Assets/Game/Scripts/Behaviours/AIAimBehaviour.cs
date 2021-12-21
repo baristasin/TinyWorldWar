@@ -43,9 +43,9 @@ namespace Assets.Game.Scripts.Behaviours
             {
                 RaycastHit hit;
                 Debug.DrawRay(_aimingTransform.position, (_aimTarget.position - _aimingTransform.transform.position).normalized * 20f, Color.red);
-                if (Physics.Raycast(_aimingTransform.position, (_aimTarget.position - _aimingTransform.transform.position).normalized, out hit, Mathf.Infinity))
+                if (Physics.Raycast(_aimingTransform.position, (_aimTarget.position - _aimingTransform.transform.position).normalized, out hit, 30f))
                 {
-                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Default"))
+                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                     {
                         return true;
                     }

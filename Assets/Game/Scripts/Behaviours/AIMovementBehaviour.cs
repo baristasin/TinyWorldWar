@@ -13,6 +13,12 @@ namespace Assets.Game.Scripts.Behaviours
 
         private Vector3 _targetPosition;
 
+        private Vector3 _dodgeMovementPosition;
+
+        private bool _isAIChallenged;
+
+        private Coroutine _dodgeMovementRoutine;
+
         public override void Initialize(SoldierCharacterController soldierCharacterController)
         {
             base.Initialize(soldierCharacterController);
@@ -34,7 +40,27 @@ namespace Assets.Game.Scripts.Behaviours
                 transform.LookAt(_soldierCharacterController.AICharacterController.AIaimBehaviour.AimTarget);
             }
 
-            _navMeshAgent.SetDestination(_targetPosition);
+            if (!_isAIChallenged)
+            {
+                _navMeshAgent.SetDestination(_targetPosition);
+            }
+
+            else
+            {
+                _navMeshAgent.SetDestination(_dodgeMovementPosition);
+            }
+        }
+
+        private IEnumerator DodgeMovementCo()
+        {
+            while (true)
+            {
+                _dodgeMovementPosition = new Vector3(Random.Range(transform.position.x - 2f, transform.position.x + 2f)
+                    , transform.position.y
+                    , Random.Range(transform.position.z - 2f, transform.position.z + 2f));
+
+                yield return new WaitForSeconds(1.5f);
+            }
         }
 
         public void SetTargetPosition(Vector3 targetPosition)
@@ -42,6 +68,28 @@ namespace Assets.Game.Scripts.Behaviours
             targetPosition.y = transform.position.y;
 
             _targetPosition = targetPosition;
+        }
+
+        public void ToggleAIChallengedStatus(bool toggle)
+        {
+            _isAIChallenged = toggle;
+
+            if (toggle)
+            {
+                if (_dodgeMovementRoutine == null)
+                {
+                    _dodgeMovementRoutine = StartCoroutine(DodgeMovementCo());
+                }
+            }
+
+            else
+            {
+                if (_dodgeMovementRoutine != null)
+                {
+                    StopCoroutine(_dodgeMovementRoutine);
+                    _dodgeMovementRoutine = null;
+                }
+            }
         }
 
         public override void Deactivate()

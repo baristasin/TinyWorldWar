@@ -26,11 +26,24 @@ namespace Assets.Game.Scripts.Behaviours
             _healthRegenRoutine = StartCoroutine(HealthRegenCo());
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown("l"))
+            {
+                _currentHealth -= 10;
+            }
+
+            if (Input.GetKeyDown("r"))
+            {
+                _currentHealth += 10;
+            }
+        }
+
         private IEnumerator HealthRegenCo()
         {
             while (_isActivated && _isInitialized && !_isDead)
             {
-                yield return new WaitForSeconds(.5f);
+                yield return new WaitForSeconds(.0f);
                 _currentHealth += 1;
                 Mathf.Clamp(_currentHealth, 0, 100);
             }

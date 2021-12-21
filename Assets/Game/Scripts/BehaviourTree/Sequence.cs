@@ -22,6 +22,7 @@ namespace Assets.Game.Scripts.BehaviourTree
 
                 if (_nodeState == NodeState.RUNNING)
                 {
+                    _currentNodeIndex = 0;
                     return NodeState.RUNNING;
                 }
 

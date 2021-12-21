@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Assets.Game.Scripts.BehaviourTree.Nodes
 {
-    public class GoNearestHospitalNode : Node
+    public class GoToAreaNode : Node
     {
         private AIBehaviourTreeConnector _connector;
 
-        public GoNearestHospitalNode(AIBehaviourTreeConnector connector)
+        public GoToAreaNode(AIBehaviourTreeConnector connector)
         {
             _connector = connector;
         }
@@ -17,9 +17,10 @@ namespace Assets.Game.Scripts.BehaviourTree.Nodes
             _connector.SoldierCharacterController.AICharacterController.AIMovementBehaviour.ToggleAIChallengedStatus(false);
 
             _connector.SoldierCharacterController.AICharacterController.AIMovementBehaviour.
-                SetTargetPosition(_connector.SoldierCharacterController.GameManager.HospitalController.HospitalTransforms[0].position);
+            SetTargetPosition(_connector.SoldierCharacterController.GameManager.AreaController.
+            GetNextArea(_connector.SoldierCharacterController.Team).AreaTransform.position);
 
-            Debug.Log($"TreeBehaviour: GoNearestHospitalNode Temporarily NodeState.RUNNING");
+            Debug.Log($"TreeBehaviour: GoToAreaNode temporarily NodeState.SUCCESS");
 
             return NodeState.RUNNING;
         }

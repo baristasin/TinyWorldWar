@@ -7,11 +7,22 @@ namespace Assets.Game.Scripts.BehaviourTree.Nodes
     {
         private AIBehaviourTreeConnector _connector;
 
+        public IsThereAnEnemyNearNode(AIBehaviourTreeConnector connector)
+        {
+            _connector = connector;
+        }
+
         public override NodeState Evaluate()
         {
-            return _connector.SoldierCharacterController.AICharacterController.AIEnemyRadarBehaviour.IsThereAnEnemyNear
+
+            var result = _connector.SoldierCharacterController.AICharacterController.AIEnemyRadarBehaviour.IsThereAnEnemyNear
                 ? NodeState.SUCCESS
                 : NodeState.FAILURE;
+
+            Debug.Log($"TreeBehaviour: IsThereAnEnemyNearNode {result}");
+            return result;
+
+
         }
     }
 }

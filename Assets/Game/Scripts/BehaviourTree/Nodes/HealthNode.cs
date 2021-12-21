@@ -8,11 +8,22 @@ namespace Assets.Game.Scripts.BehaviourTree.Nodes
         private AIBehaviourTreeConnector _connector;
         private float _lowHealthThreshold;
 
+        public HealthNode(AIBehaviourTreeConnector connector, float lowHealthThreshold)
+        {
+            _connector = connector;
+            _lowHealthThreshold = lowHealthThreshold;
+        }
+
         public override NodeState Evaluate()
         {
-            return _connector.SoldierCharacterController.AICharacterController.CharacterHealthBehaviour.CurrentHealth < _lowHealthThreshold 
-                ? NodeState.SUCCESS 
+            var result = _connector.SoldierCharacterController.AICharacterController.CharacterHealthBehaviour.CurrentHealth < _lowHealthThreshold
+                ? NodeState.SUCCESS
                 : NodeState.FAILURE;
+
+            Debug.Log($"TreeBehaviour: HealthNode {result}");
+
+            return result;
+
         }
     }
 }

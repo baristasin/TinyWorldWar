@@ -15,6 +15,7 @@ namespace Assets.Game.Scripts.Controllers
         public CharacterHitDetectorBehaviour CharacterHitDetectorBehaviour => _characterHitDetectorBehaviour;
         public CharacterSoundBehaviour CharacterSoundBehaviour => _characterSoundBehaviour;
         public CharacterHealthBehaviour CharacterHealthBehaviour => _characterHealthBehaviour;
+        public Team Team => _team;
 
         [SerializeField] private PlayerCharacterController _playerCharacterController;
         [SerializeField] private AICharacterController _aICharacterController;
@@ -23,6 +24,8 @@ namespace Assets.Game.Scripts.Controllers
         [SerializeField] protected GunnerBehaviour _gunnerBehaviour;
         [SerializeField] protected CharacterSoundBehaviour _characterSoundBehaviour;
         [SerializeField] protected CharacterHealthBehaviour _characterHealthBehaviour;
+
+        [SerializeField] private Team _team;
 
         public override void Initialize(GameManager gameManager)
         {

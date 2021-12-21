@@ -13,6 +13,8 @@ namespace Assets.Game.Scripts.Behaviours
 
         private Transform _currentEnemyTransform;
 
+        private int _layermask = 1 << 25;
+
         public override void Initialize(SoldierCharacterController soldierCharacterController)
         {
             base.Initialize(soldierCharacterController);
@@ -22,20 +24,19 @@ namespace Assets.Game.Scripts.Behaviours
         {
             while (_isActivated && _isInitialized)
             {
-                if (_currentEnemyTransform == null || _currentEnemyTransform.tag == "Dead") // There is no locked enemy
-                {
-                    Collider[] hitColliders = Physics.OverlapSphere(transform.position, 20f/*,LayerMask.NameToLayer()*/);
-                    if (hitColliders[0] != null)
-                    {
-                        _currentEnemyTransform = hitColliders[0].transform;
-                    }
 
-                    yield return new WaitForSeconds(1f);
+                Collider[] hitColliders = Physics.OverlapSphere(transform.position, 20f, _layermask);
+                if (hitColliders.Length > 0 && hitColliders[0] != null)
+                {
+                    _currentEnemyTransform = hitColliders[0].transform;
                 }
                 else
                 {
-                    yield return new WaitForSeconds(1f);
+                    _currentEnemyTransform = null;
                 }
+
+                yield return new WaitForSeconds(1f);
+
             }
 
         }
