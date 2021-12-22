@@ -21,7 +21,6 @@ namespace Assets.Game.Scripts.BehaviourTree.Nodes
                 SetAimTarget(_connector.SoldierCharacterController.AICharacterController.AIEnemyRadarBehaviour.CurrentEnemyTransform);
 
 
-            Debug.Log($"TreeBehaviour: ShootNode Temporarily running");
 
             return NodeState.RUNNING;
         }

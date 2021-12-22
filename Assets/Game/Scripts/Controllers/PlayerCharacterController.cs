@@ -51,9 +51,9 @@ namespace Assets.Game.Scripts.Controllers
             }
         }
 
-        public override void DetectorHit(LayerMask layer)
+        public override void DetectorHit(string tag)
         {
-            base.DetectorHit(layer);
+            base.DetectorHit(tag);
 
             _playerInterfaceNotifierBehaviour.NotifyPlayerInterface();
         }

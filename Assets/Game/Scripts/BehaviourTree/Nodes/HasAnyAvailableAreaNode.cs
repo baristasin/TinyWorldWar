@@ -14,8 +14,6 @@ namespace Assets.Game.Scripts.BehaviourTree.Nodes
 
         public override NodeState Evaluate()
         {
-            Debug.Log($"TreeBehaviour: HasAnyAvailableAreaNode temporarily NodeState.SUCCESS");
-
             return NodeState.SUCCESS; // Temp
         }
     }

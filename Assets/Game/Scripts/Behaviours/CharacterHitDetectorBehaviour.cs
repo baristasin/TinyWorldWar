@@ -25,7 +25,7 @@ namespace Assets.Game.Scripts.Behaviours
         {
             if (_isInitialized && _isActivated)
             {
-                _soldierCharacterController.DetectorHit(other.gameObject.layer);
+                _soldierCharacterController.DetectorHit(other.gameObject.tag);
             }
         }
     }

@@ -19,7 +19,6 @@ namespace Assets.Game.Scripts.BehaviourTree.Nodes
             _connector.SoldierCharacterController.AICharacterController.AIMovementBehaviour.
                 SetTargetPosition(_connector.SoldierCharacterController.GameManager.HospitalController.HospitalTransforms[0].position);
 
-            Debug.Log($"TreeBehaviour: GoNearestHospitalNode Temporarily NodeState.RUNNING");
 
             return NodeState.RUNNING;
         }

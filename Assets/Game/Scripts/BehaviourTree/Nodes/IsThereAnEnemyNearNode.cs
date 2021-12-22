@@ -19,7 +19,6 @@ namespace Assets.Game.Scripts.BehaviourTree.Nodes
                 ? NodeState.SUCCESS
                 : NodeState.FAILURE;
 
-            Debug.Log($"TreeBehaviour: IsThereAnEnemyNearNode {result}");
             return result;
 
 

@@ -106,7 +106,7 @@ namespace Assets.Game.Scripts.Guns
                 {
                     //ShootLogic
                     _shootEffect.Play();
-                    //var bullet = Instantiate(_bulletPrefab, _muzzleTransform.position, _muzzleTransform.rotation); // Object Pooling
+                    var bullet = Instantiate(_bulletPrefab, _muzzleTransform.position, _muzzleTransform.rotation); // Object Pooling
                     _isOnCooldown = true;
                     _cooldown = _firingRate;
                     _currentMagazineSize--;

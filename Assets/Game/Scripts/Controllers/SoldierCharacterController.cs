@@ -32,9 +32,9 @@ namespace Assets.Game.Scripts.Controllers
             base.Initialize(gameManager);            
         }
 
-        public virtual void DetectorHit(LayerMask layer)
+        public virtual void DetectorHit(string tag)
         {
-            var damage = GameManager.BattleController.GetDamageAmount(layer);
+            var damage = GameManager.BattleController.GetDamageAmount(tag);
             _characterHealthBehaviour.UpdateHealth(-damage);
         }
     }

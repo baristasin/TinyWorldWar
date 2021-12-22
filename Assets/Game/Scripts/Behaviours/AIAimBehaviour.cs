@@ -45,7 +45,7 @@ namespace Assets.Game.Scripts.Behaviours
                 Debug.DrawRay(_aimingTransform.position, (_aimTarget.position - _aimingTransform.transform.position).normalized * 20f, Color.red);
                 if (Physics.Raycast(_aimingTransform.position, (_aimTarget.position - _aimingTransform.transform.position).normalized, out hit, 30f))
                 {
-                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                    if (hit.transform.gameObject.tag != "Dead" && 1 << hit.transform.gameObject.layer == _soldierCharacterController.AICharacterController.AIEnemyRadarBehaviour.EnemyLayerMaskValue)
                     {
                         return true;
                     }

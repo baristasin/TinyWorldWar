@@ -20,7 +20,6 @@ namespace Assets.Game.Scripts.BehaviourTree.Nodes
             SetTargetPosition(_connector.SoldierCharacterController.GameManager.AreaController.
             GetNextArea(_connector.SoldierCharacterController.Team).AreaTransform.position);
 
-            Debug.Log($"TreeBehaviour: GoToAreaNode temporarily NodeState.SUCCESS");
 
             return NodeState.RUNNING;
         }

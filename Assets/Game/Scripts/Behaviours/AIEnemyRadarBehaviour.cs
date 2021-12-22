@@ -8,16 +8,19 @@ namespace Assets.Game.Scripts.Behaviours
 {
     public class AIEnemyRadarBehaviour : BaseCharacterBehaviour
     {
+        public LayerMask EnemyLayerMaskValue => _layermask;
         public bool IsThereAnEnemyNear => _currentEnemyTransform != null && _currentEnemyTransform.tag != "Dead";
         public Transform CurrentEnemyTransform => _currentEnemyTransform;
 
+        [SerializeField] private LayerMask _layermask;
+
         private Transform _currentEnemyTransform;
 
-        private int _layermask = 1 << 25;
 
         public override void Initialize(SoldierCharacterController soldierCharacterController)
         {
             base.Initialize(soldierCharacterController);
+
         }
 
         private IEnumerator DetectEnemiesCo()
@@ -26,13 +29,20 @@ namespace Assets.Game.Scripts.Behaviours
             {
 
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position, 20f, _layermask);
-                if (hitColliders.Length > 0 && hitColliders[0] != null)
+                if (hitColliders.Length > 0)
                 {
-                    _currentEnemyTransform = hitColliders[0].transform;
+                    foreach (var col in hitColliders)
+                    {
+                        if (col.gameObject != null && col.gameObject.tag != "Dead")
+                        {
+                            _currentEnemyTransform = col.transform;
+                        }
+                    }
                 }
                 else
                 {
                     _currentEnemyTransform = null;
+                    _soldierCharacterController.AICharacterController.AIaimBehaviour.SetAimTarget(null);
                 }
 
                 yield return new WaitForSeconds(1f);

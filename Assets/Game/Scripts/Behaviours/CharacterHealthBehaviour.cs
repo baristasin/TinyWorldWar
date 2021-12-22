@@ -37,6 +37,9 @@ namespace Assets.Game.Scripts.Behaviours
             {
                 _currentHealth += 10;
             }
+
+            Debug.Log($"{gameObject.name} {_currentHealth}");
+
         }
 
         private IEnumerator HealthRegenCo()
@@ -73,6 +76,9 @@ namespace Assets.Game.Scripts.Behaviours
                 _isDead = true;
                 Debug.Log("PlayerDead");
                 transform.tag = "Dead";
+                _soldierCharacterController.CharacterHitDetectorBehaviour.DeactivateHitCollider();
+
+                Destroy(gameObject);
             }
         }
 
