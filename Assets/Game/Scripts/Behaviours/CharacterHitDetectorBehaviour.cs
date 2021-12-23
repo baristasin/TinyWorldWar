@@ -14,6 +14,22 @@ namespace Assets.Game.Scripts.Behaviours
             base.Initialize(soldierCharacterController);
 
             _deactivateContainer.Add(DeactivateHitCollider);
+            _activateContainer.Add(ActivateHitCollider);
+        }
+
+        public override void Activate()
+        {
+            base.Activate();
+        }
+
+        public override void Deactivate()
+        {
+            base.Deactivate();
+        }
+
+        public void ActivateHitCollider()
+        {
+            _hitDetectorCollider.enabled = true;
         }
 
         public void DeactivateHitCollider()

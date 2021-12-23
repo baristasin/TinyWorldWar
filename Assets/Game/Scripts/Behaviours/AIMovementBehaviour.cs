@@ -22,6 +22,8 @@ namespace Assets.Game.Scripts.Behaviours
         public override void Initialize(SoldierCharacterController soldierCharacterController)
         {
             base.Initialize(soldierCharacterController);
+
+            _navMeshAgent.speed = Random.Range(3.2f, 3.8f);                
         }
 
         public override void Activate()
@@ -33,7 +35,7 @@ namespace Assets.Game.Scripts.Behaviours
         {
             if (!_isActivated || !_isInitialized) return;
 
-            _navMeshAgent.updateRotation = _soldierCharacterController.AICharacterController.AIaimBehaviour.IsAiming;
+            _navMeshAgent.updateRotation = !_soldierCharacterController.AICharacterController.AIaimBehaviour.IsAiming;
 
             if (_soldierCharacterController.AICharacterController.AIaimBehaviour.IsAiming)
             {

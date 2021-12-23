@@ -28,6 +28,14 @@ namespace Assets.Game.Scripts.Controllers
             //_characterSoundBehaviour.Initialize(this);
             _playerInterfaceNotifierBehaviour.Initialize(this);
 
+            ActivateSoldier();
+
+        }
+
+        public override void ActivateSoldier()
+        {
+            base.ActivateSoldier();
+
             _playerMovementBehaviour.Activate();
             _characterHitDetectorBehaviour.Activate();
             _gunnerBehaviour.Activate();
@@ -36,6 +44,19 @@ namespace Assets.Game.Scripts.Controllers
             //_characterSoundBehaviour.Activate();
             _playerInterfaceNotifierBehaviour.Activate();
 
+        }
+
+        public override void DeactivateSoldier()
+        {
+            base.DeactivateSoldier();
+
+            _playerMovementBehaviour.Deactivate();
+            _characterHitDetectorBehaviour.Deactivate();
+            _gunnerBehaviour.Deactivate();
+            _aimBehaviour.Deactivate();
+            _characterHealthBehaviour.Deactivate();
+            //_characterSoundBehaviour.Activate();
+            _playerInterfaceNotifierBehaviour.Deactivate();
         }
 
         private void Update()

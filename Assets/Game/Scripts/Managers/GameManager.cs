@@ -11,6 +11,7 @@ namespace Assets.Game.Scripts.Managers
         public SoldierCharacterController SoldierCharacterController => _soldierCharacterController;
 
         public InputController InputController;
+        public SpawnController SpawnController;
         public BattleController BattleController;
         public AudioController AudioController;
         public HospitalController HospitalController;
@@ -24,6 +25,7 @@ namespace Assets.Game.Scripts.Managers
         {
             AudioController.Initialize(this);
             InputController.Initialize(this);
+            SpawnController.Initialize(this);
             BattleController.Initialize(this);
             UIManager.Initialize(this);
             HospitalController.Initialize(this);

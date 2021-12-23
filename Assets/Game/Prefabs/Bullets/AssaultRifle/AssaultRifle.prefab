@@ -108,6 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c900d8547955a1743952012ab942a91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tag: 
+  _tag: AssaultRifleBulletTag
   _damage: 30
   _bulletSpeed: 150

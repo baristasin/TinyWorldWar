@@ -11,7 +11,9 @@ namespace Assets.Game.Scripts.Behaviours
 
         [SerializeField] private int _maxHealth;
 
-        private int _currentHealth;
+        [SerializeField] private int _currentHealth;
+
+        
 
         private bool _isDead;
 
@@ -24,6 +26,8 @@ namespace Assets.Game.Scripts.Behaviours
             _currentHealth = _maxHealth;
 
             _healthRegenRoutine = StartCoroutine(HealthRegenCo());
+
+            transform.tag = "Untagged";
         }
 
         private void Update()
@@ -37,9 +41,6 @@ namespace Assets.Game.Scripts.Behaviours
             {
                 _currentHealth += 10;
             }
-
-            Debug.Log($"{gameObject.name} {_currentHealth}");
-
         }
 
         private IEnumerator HealthRegenCo()
@@ -78,8 +79,11 @@ namespace Assets.Game.Scripts.Behaviours
                 transform.tag = "Dead";
                 _soldierCharacterController.CharacterHitDetectorBehaviour.DeactivateHitCollider();
 
-                Destroy(gameObject);
+                _soldierCharacterController.GameManager.SpawnController.GetIntoSpawnList(_soldierCharacterController);
+
             }
+
+
         }
 
     }

@@ -53,6 +53,8 @@ namespace Assets.Game.Scripts.Behaviours
 
         private void Update()
         {
+            if (!_isActivated || !_isInitialized) return;
+
             if (_isPlayerGunner)
             {
                 if (_soldierCharacterController.PlayerCharacterController.PlayerMovementBehaviour.IsAiming)
@@ -99,8 +101,15 @@ namespace Assets.Game.Scripts.Behaviours
             ChangeGun(true, true);
         }
 
+        public override void Deactivate()
+        {
+            base.Deactivate();
+        }
+
         public void ChangeGun(bool isNext, bool isFirst = false)
         {
+            if (!_isActivated || !_isInitialized) return;
+
             int nextIndex = 0;
             int previousIndex = 0;
 
@@ -173,6 +182,8 @@ namespace Assets.Game.Scripts.Behaviours
 
         public void ShootCurrentGun()
         {
+            if (!_isActivated || !_isInitialized) return;
+
             _currentGun.Shoot();
         }
     }

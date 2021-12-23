@@ -44,6 +44,11 @@ namespace Assets.Game.Scripts.Behaviours
             {
                 _walkAudioSource.enabled = _isWalking;
             }
+
+            else
+            {
+                //_walkAudioSource.enabled = false;
+            }
         }
 
         public void SetWalkingStatus(bool status)

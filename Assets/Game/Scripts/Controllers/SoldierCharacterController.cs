@@ -37,5 +37,15 @@ namespace Assets.Game.Scripts.Controllers
             var damage = GameManager.BattleController.GetDamageAmount(tag);
             _characterHealthBehaviour.UpdateHealth(-damage);
         }
+
+        public virtual void ActivateSoldier()
+        {
+
+        }
+
+        public virtual void DeactivateSoldier()
+        {
+
+        }
     }
 }

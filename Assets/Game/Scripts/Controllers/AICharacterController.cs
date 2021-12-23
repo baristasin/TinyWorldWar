@@ -23,6 +23,8 @@ namespace Assets.Game.Scripts.Controllers
 
         private Selector _topNode;
 
+        private bool _isCharacterDeactivated;
+
         public override void Initialize(GameManager gameManager)
         {
             base.Initialize(gameManager);
@@ -36,6 +38,25 @@ namespace Assets.Game.Scripts.Controllers
             _aIBehaviourTreeConnector.Initialize(this);
             //_characterSoundBehaviour.Initialize(this);
 
+            ActivateSoldier();
+        }
+
+        public override void DeactivateSoldier()
+        {
+            base.DeactivateSoldier();
+            _aIMovementBehaviour.Deactivate();
+            _characterHitDetectorBehaviour.Deactivate();
+            _characterHealthBehaviour.Deactivate();
+            _aIAimBehaviour.Deactivate();
+            _gunnerBehaviour.Deactivate();
+            _aIEnemyRadarBehaviour.Deactivate();
+            _isCharacterDeactivated = true;
+        }
+
+        public override void ActivateSoldier()
+        {
+            SetBehaviourTree();
+
             _aIMovementBehaviour.Activate();
             _characterHitDetectorBehaviour.Activate();
             _characterHealthBehaviour.Activate();
@@ -44,16 +65,22 @@ namespace Assets.Game.Scripts.Controllers
             _aIEnemyRadarBehaviour.Activate();
             //_characterSoundBehaviour.Activate();
 
-            SetBehaviourTree();
+            _isCharacterDeactivated = false;
         }
 
         private void Update()
         {
-            _topNode.Evaluate();
-
-            if(_topNode.NodeState == NodeState.FAILURE)
+            if (!_isCharacterDeactivated)
             {
-                Debug.Log($"TreeBehaviour: TopNodeFailure");
+                if (_topNode != null)
+                {
+                    _topNode.Evaluate();
+
+                    if (_topNode.NodeState == NodeState.FAILURE)
+                    {
+                        Debug.Log($"TreeBehaviour: TopNodeFailure");
+                    }
+                }
             }
         }
 

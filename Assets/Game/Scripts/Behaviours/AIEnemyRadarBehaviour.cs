@@ -28,7 +28,7 @@ namespace Assets.Game.Scripts.Behaviours
             while (_isActivated && _isInitialized)
             {
 
-                Collider[] hitColliders = Physics.OverlapSphere(transform.position, Random.Range(20f,35f), _layermask);                
+                Collider[] hitColliders = Physics.OverlapSphere(transform.position, 25f/*Random.Range(20f,35f)*/, _layermask);                
                 if (hitColliders.Length > 0)
                 {
                     foreach (var col in hitColliders)
