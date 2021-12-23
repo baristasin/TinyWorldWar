@@ -10,17 +10,17 @@ namespace Assets.Game.Scripts.Controllers
     {
         [SerializeField] private List<Bullet> _bulletTypes;
 
-        public int GetDamageAmount(LayerMask layer)
+        public int GetDamageAmount(string tag)
         {
             foreach (var bulletType in _bulletTypes)
             {
-                if(bulletType.LayerMask == layer)
+                if(bulletType.Tag == tag)
                 {
                     return bulletType.Damage;
                 }
             }
 
-            Debug.Log($"Error: Damager with {layer} layer is not initialized");
+            Debug.Log($"Error: Damager with {tag} layer is not initialized");
             return 0;
         }
     }

@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8772164147128634142}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: FollowObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -344,11 +344,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8772164148224557835}
   - component: {fileID: 8772164148224557833}
-  - component: {fileID: 8772164148224557839}
+  - component: {fileID: 1703179268221452560}
   - component: {fileID: 8772164148224557832}
   - component: {fileID: 8772164148224557838}
   - component: {fileID: 8772164148224557837}
   - component: {fileID: 8772164148224557826}
+  - component: {fileID: 1578755258965310425}
+  - component: {fileID: 968564353}
+  - component: {fileID: 4490441577968701756}
   - component: {fileID: 8772164148224557836}
   m_Layer: 0
   m_Name: ThirdPersonControl
@@ -364,7 +367,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8772164148224557834}
-  m_LocalRotation: {x: -0, y: 0.9998483, z: -0, w: -0.017419457}
+  m_LocalRotation: {x: 0, y: 0.9998483, z: -0, w: -0.017417442}
   m_LocalPosition: {x: -63.02493, y: 32.77, z: 29.334007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -391,7 +394,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8772164148224557839
+--- !u!114 &1703179268221452560
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -400,13 +403,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 8772164148224557834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 135ac0c2d97ca5849b647188c01776fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a319ce3a2149f74ca329348bc7e7f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerMovementBehaviour: {fileID: 8772164148224557832}
+  _playerCharacterController: {fileID: 1703179268221452560}
+  _aICharacterController: {fileID: 0}
   _characterHitDetectorBehaviour: {fileID: 8772164148224557838}
+  _characterSoundBehaviour: {fileID: 4490441577968701756}
+  _characterHealthBehaviour: {fileID: 968564353}
+  _playerMovementBehaviour: {fileID: 8772164148224557832}
   _gunnerBehaviour: {fileID: 8772164148224557837}
   _aimBehaviour: {fileID: 8772164148224557826}
+  _playerInterfaceNotifierBehaviour: {fileID: 1578755258965310425}
 --- !u!114 &8772164148224557832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,7 +482,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tpsCamera: {fileID: 0}
   _aimTransform: {fileID: 8772164148202811312}
-  _testAimValue: 50
+  _aimValue: 40
+--- !u!114 &1578755258965310425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772164148224557834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff0abda8b8e9474594031e110998e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &968564353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772164148224557834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f0495fde878c5479ae8d6a26268513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+--- !u!114 &4490441577968701756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772164148224557834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f6e348b9a0dfd4cabdf0758c57505d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _walkAudioSource: {fileID: 0}
+  _getDamageAudioSource: {fileID: 0}
 --- !u!65 &8772164148224557836
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -750,25 +797,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7710195252090338510, guid: 39e545d580aec2c44b19035a5e04d70f,
-        type: 3}
-      propertyPath: _reloadTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7710195252090338510, guid: 39e545d580aec2c44b19035a5e04d70f,
-        type: 3}
-      propertyPath: _magazineTotalSize
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 7710195252090338511, guid: 39e545d580aec2c44b19035a5e04d70f,
         type: 3}
       propertyPath: m_Name
       value: AssaultRifleGun
-      objectReference: {fileID: 0}
-    - target: {fileID: 7710195252090338511, guid: 39e545d580aec2c44b19035a5e04d70f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39e545d580aec2c44b19035a5e04d70f, type: 3}

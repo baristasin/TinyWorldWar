@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - FxTemporaire
+  - AssaultRifleBulletTag
+  - PistolBulletTag
+  - Dead
   layers:
   - Default
   - TransparentFX
@@ -19,8 +23,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - RedTeam
+  - BlueTeam
   - 
   - 
   - 
@@ -30,7 +34,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Enemy
   - 
   - 
   - 

@@ -1,6 +1,7 @@
+using Assets.Game.Scripts.Behaviours;
 using Assets.Game.Scripts.Bullets;
 using Assets.Game.Scripts.Interfaces;
-using MangoramaStudio.Scripts.Behaviours;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,9 @@ namespace Assets.Game.Scripts.Throwables
 
         private Transform _holdTransform;
         private bool _isInitialized;
+
+        public event EventHandler OnWeaponShoot;
+        public event EventHandler OnWeaponReload;
 
         private void Update()
         {
@@ -75,5 +79,15 @@ namespace Assets.Game.Scripts.Throwables
                 _isOnCooldown = true;
             }
         }
+        public int GetCurrentAmmoInMagazine()
+        {
+            return 1;
+        }
+
+        public int GetMagazineTotalSize()
+        {
+            return _throwableCount;
+        }
+
     }
 }

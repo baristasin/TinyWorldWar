@@ -5,10 +5,10 @@ namespace Assets.Game.Scripts.Bullets
 {
     public class Bullet : MonoBehaviour
     {
-        public LayerMask LayerMask => _layerMask;
+        public string Tag => _tag;
         public int Damage => _damage;
 
-        [SerializeField] private LayerMask _layerMask;
+        [SerializeField] private string _tag;
         [SerializeField] private int _damage;
         [SerializeField] private float _bulletSpeed;
 
