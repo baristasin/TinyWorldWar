@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 3be13266594829c48b5ff777d0bda46e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 86f9629de65ced2468c0936e79ffe390, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -37,22 +37,22 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 5.3, y: 5.3}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: f8026713f146e6e4c815f8e79ebf30ba, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 7c070605a130bd942a75e6322b2fe0d9, type: 3}
+        m_Scale: {x: 5.3, y: 5.3}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 64933531358a641459cd23d33c1229a7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5d81f149c47f39b4397cf1f41590fa7b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: db053ea6d9687b54d817e205039e5729, type: 3}
+        m_Texture: {fileID: 2800000, guid: 12ffa1078231f574383c6d1277ef83de, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 438f7871a411f0440922ab70ee75cf4e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 06378608225860040b3bc12839d36bf6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -60,13 +60,13 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _GlossMapScale: 1
+    - _GlossMapScale: 0.562
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 0.258
-    - _Parallax: 0.005
+    - _Parallax: 0.0157
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
