@@ -109,5 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tag: PistolBulletTag
-  _damage: 20
+  _damage: 19
   _bulletSpeed: 120

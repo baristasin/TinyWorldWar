@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Assets.Game.Scripts.Controllers
 {
@@ -14,9 +15,8 @@ namespace Assets.Game.Scripts.Controllers
 
     public class AreaController : CustomBehaviour
     {
-        public List<Area> AreaTransforms => _areas;
-
-        [SerializeField] private List<Area> _areas;
+        [SerializeField] private List<Area> _areasFromBlueSide;
+        [SerializeField] private List<Area> _areasFromRedSide;
 
         public override void Initialize(GameManager gameManager)
         {
@@ -25,7 +25,15 @@ namespace Assets.Game.Scripts.Controllers
 
         public Area GetNextArea(Team team)
         {
-            return _areas[0];
+            if(team == Team.Blue)
+            {
+                return _areasFromBlueSide.First(x => x.Team == Team.Neutral || x.Team == Team.Red);
+            }
+
+            else
+            {
+                return _areasFromRedSide.First(x => x.Team == Team.Neutral || x.Team == Team.Blue);
+            }
         }
     }
 }

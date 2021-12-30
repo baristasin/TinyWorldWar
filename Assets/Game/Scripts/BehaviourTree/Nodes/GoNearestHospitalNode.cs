@@ -17,7 +17,8 @@ namespace Assets.Game.Scripts.BehaviourTree.Nodes
             _connector.SoldierCharacterController.AICharacterController.AIMovementBehaviour.ToggleAIChallengedStatus(false);
 
             _connector.SoldierCharacterController.AICharacterController.AIMovementBehaviour.
-                SetTargetPosition(_connector.SoldierCharacterController.GameManager.HospitalController.HospitalTransforms[0].position);
+                SetTargetPosition(_connector.SoldierCharacterController.GameManager.HospitalController
+                .GetNearestHospital(_connector.SoldierCharacterController.Team).transform.position);
 
 
             return NodeState.RUNNING;
