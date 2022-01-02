@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Assets.Game.Scripts.Controllers
 {
@@ -24,6 +25,9 @@ namespace Assets.Game.Scripts.Controllers
         private Selector _topNode;
 
         private bool _isCharacterDeactivated;
+
+        public bool IsAggressive { get; set; }
+
 
         public override void Initialize(GameManager gameManager)
         {
@@ -56,6 +60,10 @@ namespace Assets.Game.Scripts.Controllers
         public override void ActivateSoldier()
         {
             SetBehaviourTree();
+
+            var randNum = Random.Range(0, 11);
+
+            IsAggressive = randNum > 7 ? true : false;
 
             _aIMovementBehaviour.Activate();
             _characterHitDetectorBehaviour.Activate();

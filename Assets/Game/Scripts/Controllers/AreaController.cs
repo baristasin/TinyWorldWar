@@ -18,13 +18,21 @@ namespace Assets.Game.Scripts.Controllers
         [SerializeField] private List<Area> _areasFromBlueSide;
         [SerializeField] private List<Area> _areasFromRedSide;
 
+        [SerializeField] private List<Area> _areaFromCriticalArea;
+
+
         public override void Initialize(GameManager gameManager)
         {
             base.Initialize(gameManager);
         }
 
-        public Area GetNextArea(Team team)
+        public Area GetNextArea(Team team, bool isAggressiveBehaviour)
         {
+            if (isAggressiveBehaviour && _areaFromCriticalArea.Find(x => x.Team != team) is Area area)
+            {
+                return area;
+            }
+
             if(team == Team.Blue)
             {
                 return _areasFromBlueSide.First(x => x.Team == Team.Neutral || x.Team == Team.Red);

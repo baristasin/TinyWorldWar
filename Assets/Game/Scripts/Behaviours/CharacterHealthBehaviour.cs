@@ -6,14 +6,14 @@ namespace Assets.Game.Scripts.Behaviours
 {
     public class CharacterHealthBehaviour : BaseCharacterBehaviour
     {
+        public bool IsGettingTreatment { get; set; }
+
         public bool IsDead => _isDead;
         public int CurrentHealth => _currentHealth;
 
         [SerializeField] private int _maxHealth;
 
-        [SerializeField] private int _currentHealth;
-
-        
+        [SerializeField] private int _currentHealth;        
 
         private bool _isDead;
 

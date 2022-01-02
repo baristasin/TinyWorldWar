@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Game.Scripts.Controllers;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Game.Scripts.BehaviourTree.Nodes
@@ -7,18 +8,23 @@ namespace Assets.Game.Scripts.BehaviourTree.Nodes
     {
         private AIBehaviourTreeConnector _connector;
 
+        private AICharacterController _aICharacterController;
+
         public GoToAreaNode(AIBehaviourTreeConnector connector)
         {
             _connector = connector;
+
+            _aICharacterController = _connector.SoldierCharacterController.AICharacterController;
+
         }
 
         public override NodeState Evaluate()
         {
-            _connector.SoldierCharacterController.AICharacterController.AIMovementBehaviour.ToggleAIChallengedStatus(false);
+            _aICharacterController.AIMovementBehaviour.ToggleAIChallengedStatus(false);
 
-            _connector.SoldierCharacterController.AICharacterController.AIMovementBehaviour.
+            _aICharacterController.AIMovementBehaviour.
             SetTargetPosition(_connector.SoldierCharacterController.GameManager.AreaController.
-            GetNextArea(_connector.SoldierCharacterController.Team).AreaTransform.position);
+            GetNextArea(_connector.SoldierCharacterController.Team, _aICharacterController.IsAggressive).AreaTransform.position);
 
 
             return NodeState.RUNNING;

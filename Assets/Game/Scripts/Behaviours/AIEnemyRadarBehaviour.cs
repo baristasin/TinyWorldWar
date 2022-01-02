@@ -23,12 +23,24 @@ namespace Assets.Game.Scripts.Behaviours
 
         }
 
+        public override void Activate()
+        {
+            base.Activate();
+
+            StartCoroutine(DetectEnemiesCo());
+
+        }
+
+        public override void Deactivate()
+        {
+            base.Deactivate();
+        }
+
         private IEnumerator DetectEnemiesCo()
         {
             while (_isActivated && _isInitialized)
             {
-
-                Collider[] hitColliders = Physics.OverlapSphere(transform.position, 25f/*Random.Range(20f,35f)*/, _layermask);                
+                Collider[] hitColliders = Physics.OverlapSphere(transform.position, 25f/*Random.Range(20f,35f)*/, _layermask);
                 if (hitColliders.Length > 0)
                 {
                     foreach (var col in hitColliders)
@@ -49,19 +61,6 @@ namespace Assets.Game.Scripts.Behaviours
 
             }
 
-        }
-
-        public override void Activate()
-        {
-            base.Activate();
-
-            StartCoroutine(DetectEnemiesCo());
-
-        }
-
-        public override void Deactivate()
-        {
-            base.Deactivate();
         }
     }
 }
