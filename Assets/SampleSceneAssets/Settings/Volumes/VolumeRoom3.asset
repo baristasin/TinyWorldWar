@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d08ce26990eb1a4a9177b860541e702, type: 3}
   m_Name: Exposure
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
@@ -63,10 +63,10 @@ MonoBehaviour:
     m_Value: 0
   limitMin:
     m_OverrideState: 1
-    m_Value: 4.5
+    m_Value: 6.620058
   limitMax:
     m_OverrideState: 1
-    m_Value: 13
+    m_Value: 11.554867
   curveMap:
     m_OverrideState: 0
     m_Value:
@@ -208,7 +208,7 @@ MonoBehaviour:
     m_Value: 3
   toeStrength:
     m_OverrideState: 1
-    m_Value: 0.213
+    m_Value: 0.298
     min: 0
     max: 1
   toeLength:
@@ -258,11 +258,11 @@ MonoBehaviour:
   m_AdvancedMode: 0
   temperature:
     m_OverrideState: 1
-    m_Value: 8
+    m_Value: -5
     min: -100
     max: 100
   tint:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 6
     min: -100
     max: 100
@@ -300,27 +300,27 @@ MonoBehaviour:
   active: 1
   m_AdvancedMode: 0
   postExposure:
-    m_OverrideState: 1
-    m_Value: 0.8
+    m_OverrideState: 0
+    m_Value: 1.18
   contrast:
     m_OverrideState: 1
-    m_Value: 45.9
+    m_Value: 64.1
     min: -100
     max: 100
   colorFilter:
     m_OverrideState: 1
-    m_Value: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
+    m_Value: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1
   hueShift:
-    m_OverrideState: 1
-    m_Value: 4
+    m_OverrideState: 0
+    m_Value: -14
     min: -180
     max: 180
   saturation:
-    m_OverrideState: 1
-    m_Value: 0
+    m_OverrideState: 0
+    m_Value: -3.7
     min: -100
     max: 100
 --- !u!114 &2868845305931025652
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.8593267, y: 0.93319046, z: 1, w: 0}
+    m_Value: {x: 0.9210155, y: 0.98643506, z: 1, w: 0}
   midtones:
     m_OverrideState: 1
     m_Value: {x: 1, y: 0.9603793, z: 0.8989731, w: 0}
