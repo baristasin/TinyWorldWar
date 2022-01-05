@@ -1,3 +1,4 @@
+using Cinemachine;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +24,13 @@ namespace Assets.Game.Scripts.Behaviours
         [SerializeField] private float _jumpHeight;
 
         [SerializeField] private Image _crosshair;
+
+        [SerializeField] private CinemachineFreeLook _cinemachineFreeLookCam;
+
+        private float _defaultFowValue = 50f;
+        private float _aimFowValue = 25;
+
+        private float _fowValue = 40f;
 
         private float _groundDistance = 0.4f;
         private float _turnSmoothTime = 0.4f;
@@ -70,13 +78,21 @@ namespace Assets.Game.Scripts.Behaviours
                 _characterController.Move(moveDirection.normalized * _speed * Time.deltaTime);
             }
 
+            _cinemachineFreeLookCam.m_Lens.FieldOfView = _fowValue;
+
             if (_isAiming)
             {
+                _fowValue = Mathf.Lerp(_fowValue, _aimFowValue, Time.deltaTime * 5f);
+
                 float targetAngle = _cameraTransfom.eulerAngles.y;
 
                 float angle = targetAngle;
 
                 transform.rotation = Quaternion.Euler(0, angle, 0);
+            }
+            else
+            {
+                _fowValue = Mathf.Lerp(_fowValue, _defaultFowValue, Time.deltaTime * 5f);
             }
 
             if (Input.GetButtonDown("Jump") && _isGrounded)
