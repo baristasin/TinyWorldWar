@@ -9,8 +9,6 @@ namespace Assets.Game.Scripts.Controllers
 {
     public class SpawnController : CustomBehaviour
     {
-        public static event Action OnSpawn;
-
         public List<CustomTimer> _timerList;
 
         [SerializeField] private Transform _blueTeamSpawnTransform;
@@ -56,6 +54,8 @@ namespace Assets.Game.Scripts.Controllers
 
             soldier.Initialize(GameManager);
             timer.Dispose();
+
+            GameManager.SoldierSpawned(soldier.Team);
         }
     }
 }

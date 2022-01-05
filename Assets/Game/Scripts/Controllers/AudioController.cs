@@ -9,9 +9,15 @@ namespace Assets.Game.Scripts.Controllers
     {
         public AudioClip WalkingClip => _walkingClip;
         public AudioClip GetDamageClip => _getDamageClip;
+        public AudioClip GetGunSwitchAudioClip => _gunSwitchAudioClip;
+
+        public AudioClip GetJumpAudioClip => _jumpAudioClip;
 
         [SerializeField] private AudioClip _walkingClip;
         [SerializeField] private AudioClip _getDamageClip;
+        [SerializeField] private AudioClip _gunSwitchAudioClip;
+        [SerializeField] private AudioClip _jumpAudioClip;
+
 
         public override void Initialize(GameManager gameManager)
         {

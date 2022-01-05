@@ -23,6 +23,9 @@ namespace Assets.Game.Scripts.Guns
         [SerializeField] protected int _magazineTotalSize;
         [SerializeField] protected float _reloadTime;
         [SerializeField] protected ParticleSystem _shootEffect;
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip _shootAudioClip;
+        [SerializeField] private AudioClip _reloadAudioClip;
 
         protected bool _isInitialized;
         protected bool _isOnCooldown;
@@ -105,6 +108,8 @@ namespace Assets.Game.Scripts.Guns
                 if (!_isOnCooldown && _currentMagazineSize > 0)
                 {
                     //ShootLogic
+                    _audioSource.clip = _shootAudioClip;
+                    _audioSource.Play();
                     _shootEffect.Play();
                     var bullet = Instantiate(_bulletPrefab, _muzzleTransform.position, _muzzleTransform.rotation); // Object Pooling
                     _isOnCooldown = true;
@@ -126,7 +131,10 @@ namespace Assets.Game.Scripts.Guns
 
         private IEnumerator ReloadCo()
         {
-            yield return new WaitForSeconds(_reloadTime);
+            yield return new WaitForSeconds(_reloadTime / 2f);
+            _audioSource.clip = _reloadAudioClip;
+            _audioSource.Play();
+            yield return new WaitForSeconds(_reloadTime / 2f);
             _currentMagazineSize = _magazineTotalSize;
             _isReloading = false;
             _reloadingRoutine = null;

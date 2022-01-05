@@ -25,7 +25,7 @@ namespace Assets.Game.Scripts.Controllers
             _gunnerBehaviour.Initialize(this);
             _aimBehaviour.Initialize(this);
             _characterHealthBehaviour.Initialize(this);
-            //_characterSoundBehaviour.Initialize(this);
+            _characterSoundBehaviour.Initialize(this);
             _playerInterfaceNotifierBehaviour.Initialize(this);
 
             ActivateSoldier();
@@ -41,7 +41,7 @@ namespace Assets.Game.Scripts.Controllers
             _gunnerBehaviour.Activate();
             _aimBehaviour.Activate();
             _characterHealthBehaviour.Activate();
-            //_characterSoundBehaviour.Activate();
+            _characterSoundBehaviour.Activate();
             _playerInterfaceNotifierBehaviour.Activate();
 
         }

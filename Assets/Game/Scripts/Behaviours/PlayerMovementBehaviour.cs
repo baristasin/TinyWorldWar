@@ -78,6 +78,7 @@ namespace Assets.Game.Scripts.Behaviours
             if (Input.GetButtonDown("Jump") && _isGrounded)
             {
                 _fallVelocity.y = Mathf.Sqrt(_jumpHeight * Physics.gravity.y / 4.2f * Physics.gravity.y);
+                _soldierCharacterController.CharacterSoundBehaviour.PlayJumpClip();
             }
 
 

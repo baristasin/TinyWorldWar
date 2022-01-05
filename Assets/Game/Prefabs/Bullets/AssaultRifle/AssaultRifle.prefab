@@ -109,5 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tag: AssaultRifleBulletTag
-  _damage: 30
+  _damage: 22
   _bulletSpeed: 150

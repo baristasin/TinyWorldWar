@@ -155,6 +155,8 @@ namespace Assets.Game.Scripts.Behaviours
                 _soldierCharacterController.PlayerCharacterController.PlayerInterfaceNotifierBehaviour.NotifyPlayerInterface();
             }
 
+            _soldierCharacterController.CharacterSoundBehaviour.PlayGunSwitchSound();
+
             ActivateGun(_currentGun);
         }
 

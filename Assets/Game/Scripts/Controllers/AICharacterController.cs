@@ -40,7 +40,7 @@ namespace Assets.Game.Scripts.Controllers
             _gunnerBehaviour.Initialize(this);
             _aIEnemyRadarBehaviour.Initialize(this);
             _aIBehaviourTreeConnector.Initialize(this);
-            //_characterSoundBehaviour.Initialize(this);
+            _characterSoundBehaviour.Initialize(this);
 
             ActivateSoldier();
         }
@@ -71,7 +71,7 @@ namespace Assets.Game.Scripts.Controllers
             _aIAimBehaviour.Activate();
             _gunnerBehaviour.Activate();
             _aIEnemyRadarBehaviour.Activate();
-            //_characterSoundBehaviour.Activate();
+            _characterSoundBehaviour.Activate();
 
             _isCharacterDeactivated = false;
         }

@@ -5,6 +5,7 @@ namespace Assets.Game.Scripts.Bullets
 {
     public class Bullet : MonoBehaviour
     {
+        public bool IsFiringFromPlayersGun { get; set; }
         public string Tag => _tag;
         public int Damage => _damage;
 
@@ -15,6 +16,16 @@ namespace Assets.Game.Scripts.Bullets
         private void Update()
         {
             transform.position += transform.forward * _bulletSpeed * Time.deltaTime;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!IsFiringFromPlayersGun) return;
+
+            if(other.gameObject.layer == LayerMask.GetMask("RedTeam"))
+            {
+
+            }
         }
     }
 }
