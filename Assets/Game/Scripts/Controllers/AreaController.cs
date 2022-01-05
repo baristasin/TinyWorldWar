@@ -56,14 +56,29 @@ namespace Assets.Game.Scripts.Controllers
                 return area;
             }
 
-            if (team == Team.Blue)
+            if (team == Team.Blue && _areasFromBlueSide.First(x => x.Team == Team.Neutral || x.Team == Team.Red) != null)
             {
                 return _areasFromBlueSide.First(x => x.Team == Team.Neutral || x.Team == Team.Red);
             }
 
-            else
+            else if(team == Team.Red && _areasFromRedSide.First(x => x.Team == Team.Neutral || x.Team == Team.Blue) != null)
             {
                 return _areasFromRedSide.First(x => x.Team == Team.Neutral || x.Team == Team.Blue);
+            }
+
+            else
+            {
+                if(team == Team.Red)
+                {
+                    return _areasFromRedSide[2];
+                }
+
+                if (team == Team.Blue)
+                {
+                    return _areasFromBlueSide[2];
+                }
+
+                return null;
             }
         }
     }

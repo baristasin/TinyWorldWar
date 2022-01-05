@@ -21,6 +21,7 @@ namespace Assets.Game.Scripts.BehaviourTree.Nodes
 
         public override NodeState Evaluate()
         {
+            
 
             var result = _aICharacterController.AIEnemyRadarBehaviour.IsThereAnEnemyNear
                 ? NodeState.SUCCESS

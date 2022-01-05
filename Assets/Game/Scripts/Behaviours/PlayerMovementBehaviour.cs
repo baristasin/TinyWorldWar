@@ -25,7 +25,7 @@ namespace Assets.Game.Scripts.Behaviours
         [SerializeField] private Image _crosshair;
 
         private float _groundDistance = 0.4f;
-        private float _turnSmoothTime = 0.1f;
+        private float _turnSmoothTime = 0.4f;
         private float _turnSmoothVelocity;
         private bool _isGrounded;
         private bool _isAiming;
@@ -47,6 +47,7 @@ namespace Assets.Game.Scripts.Behaviours
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
 
+
             if (_isGrounded && _fallVelocity.y < 0)
             {
                 _fallVelocity.y = Physics.gravity.y / 4.2f;
@@ -60,7 +61,10 @@ namespace Assets.Game.Scripts.Behaviours
 
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, _turnSmoothTime);
 
-                transform.rotation = Quaternion.Euler(0, angle, 0);
+                if (!_isAiming)
+                {
+                    transform.rotation = Quaternion.Euler(0, angle, 0);
+                }
 
                 Vector3 moveDirection = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
                 _characterController.Move(moveDirection.normalized * _speed * Time.deltaTime);

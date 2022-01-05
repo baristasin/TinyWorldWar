@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8711144558482728710}
   - component: {fileID: 5713915947203405987}
   - component: {fileID: 7543282046654700649}
+  - component: {fileID: -2051415049752258575}
+  - component: {fileID: 621251650726570859}
   m_Layer: 0
   m_Name: "Kahvalt\u0131l\u0131k_Kutu (5)"
   m_TagString: Untagged
@@ -81,3 +83,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &-2051415049752258575
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8336131566023540156}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.024, y: 0.006, z: 0.031000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0.031000001}
+  m_TimeToStationary: 0.5
+--- !u!65 &621251650726570859
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8336131566023540156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.04733691, y: 0.01198404, z: 0.061517995}
+  m_Center: {x: -0.0000000011240938, y: -0.0000000071569604, z: 0.030758996}

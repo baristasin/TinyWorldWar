@@ -10,11 +10,15 @@ namespace Assets.Game.Scripts.Behaviours
         public bool IsAiming => _isAiming;
         public Transform AimTarget => _aimTarget;
 
+        public bool CanSeeEnemy => _canSeeEnemy;
+
         [SerializeField] private Transform _aimingTransform;
 
         private Transform _aimTarget;
 
         private bool _isAiming;
+
+        private bool _canSeeEnemy;
 
         public override void Initialize(SoldierCharacterController soldierCharacterController)
         {
@@ -45,6 +49,7 @@ namespace Assets.Game.Scripts.Behaviours
                 Debug.DrawRay(_aimingTransform.position, (_aimTarget.position - _aimingTransform.transform.position).normalized * 20f, Color.red);
                 if (Physics.Raycast(_aimingTransform.position, (_aimTarget.position - _aimingTransform.transform.position).normalized, out hit, 50f))
                 {
+                    _canSeeEnemy = true;
                     if (hit.transform.gameObject.tag != "Dead" && 1 << hit.transform.gameObject.layer == _soldierCharacterController.AICharacterController.AIEnemyRadarBehaviour.EnemyLayerMaskValue)
                     {
                         return true;
@@ -53,6 +58,7 @@ namespace Assets.Game.Scripts.Behaviours
 
                 else
                 {
+                    _canSeeEnemy = false;
                     return false;
                 }
 
