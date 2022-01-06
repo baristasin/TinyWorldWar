@@ -40,7 +40,7 @@ namespace Assets.Game.Scripts.Behaviours
         {
             while (_isActivated && _isInitialized)
             {
-                Collider[] hitColliders = Physics.OverlapSphere(transform.position, Random.Range(1f,5f), _layermask);
+                Collider[] hitColliders = Physics.OverlapSphere(transform.position, Random.Range(5f,25f), _layermask);
                 if (hitColliders.Length > 0)
                 {
                     foreach (var col in hitColliders)

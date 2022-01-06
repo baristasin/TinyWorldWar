@@ -23,7 +23,7 @@ namespace Assets.Game.Scripts.Behaviours
         {
             base.Initialize(soldierCharacterController);
 
-            _navMeshAgent.speed = Random.Range(.26f, .36f);                
+            _navMeshAgent.speed = Random.Range(.7f, 1f);                
         }
 
         public override void Activate()
