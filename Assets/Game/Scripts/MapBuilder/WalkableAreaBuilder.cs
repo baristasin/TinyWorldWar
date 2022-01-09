@@ -1,4 +1,3 @@
-using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +9,6 @@ namespace Assets.Game.Scripts.MapBuilder
     {
         [SerializeField] private List<NavMeshSurface> _navMeshSurfaces;
 
-        [Button]
         private void BuildNavMeshes()
         {
             foreach (var surface in _navMeshSurfaces)

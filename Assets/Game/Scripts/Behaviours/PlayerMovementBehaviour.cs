@@ -1,6 +1,5 @@
 using Assets.Game.Scripts.Controllers;
 using Cinemachine;
-using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,7 +44,6 @@ namespace Assets.Game.Scripts.Behaviours
 
         private bool _isWalking;
 
-        [Button]
         public void SetFiring()
         {
             if (!_isInitialized || !_isActivated) return;

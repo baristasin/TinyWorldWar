@@ -23,7 +23,7 @@ namespace Assets.Game.Scripts.Controllers
 
         private void Start()
         {
-            StartCoroutine(DetectEnemiesCo());
+            StartCoroutine(DetectCaptureSoldiersCo());
             _team = Team.Neutral;
         }
 
@@ -48,7 +48,7 @@ namespace Assets.Game.Scripts.Controllers
             }
         }
 
-        private IEnumerator DetectEnemiesCo()
+        private IEnumerator DetectCaptureSoldiersCo()
         {
             while (true)
             {

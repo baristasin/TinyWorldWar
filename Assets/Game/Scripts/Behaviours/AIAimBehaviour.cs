@@ -1,5 +1,4 @@
 ﻿using Assets.Game.Scripts.Controllers;
-using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
 
@@ -49,14 +48,10 @@ namespace Assets.Game.Scripts.Behaviours
                 Debug.DrawRay(_aimingTransform.position, (_aimTarget.position - _aimingTransform.transform.position).normalized * 20f, Color.red);
                 if (Physics.Raycast(_aimingTransform.position, (_aimTarget.position - _aimingTransform.transform.position).normalized, out hit, 50f,~_soldierCharacterController.AICharacterController.AIEnemyRadarBehaviour.FriendLayerMaskValue))
                 {
-                    if(1 << hit.transform.gameObject.layer == _soldierCharacterController.AICharacterController.AIEnemyRadarBehaviour.EnemyLayerMaskValue)
-                    {
-                        _canSeeEnemy = true;
-                    }
-                    else
-                    {
-                        _canSeeEnemy = false;
-                    }
+
+                    _canSeeEnemy = 1 << hit.transform.gameObject.layer == _soldierCharacterController.AICharacterController.AIEnemyRadarBehaviour.EnemyLayerMaskValue 
+                        ? true 
+                        : false;
 
                     if (hit.transform.gameObject.tag != "Dead" && 1 << hit.transform.gameObject.layer == _soldierCharacterController.AICharacterController.AIEnemyRadarBehaviour.EnemyLayerMaskValue)
                     {
@@ -85,7 +80,6 @@ namespace Assets.Game.Scripts.Behaviours
             base.Deactivate();
         }
 
-        [Button]
         public void SetAimTarget(Transform aimTarget)
         {
             _aimTarget = aimTarget;

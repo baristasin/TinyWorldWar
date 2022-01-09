@@ -2,7 +2,6 @@
 using Assets.Game.Scripts.BehaviourTree;
 using Assets.Game.Scripts.BehaviourTree.Nodes;
 using Assets.Game.Scripts.Managers;
-using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
