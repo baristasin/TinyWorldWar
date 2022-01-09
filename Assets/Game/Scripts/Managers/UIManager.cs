@@ -8,6 +8,7 @@ namespace Assets.Game.Scripts.Managers
     public class UIManager : CustomBehaviour
     {
         public InGamePanel InGamePanel;
+        public EndGamePanel endGamePanel;
 
         public override void Initialize(GameManager gameManager)
         {
@@ -15,6 +16,17 @@ namespace Assets.Game.Scripts.Managers
 
             InGamePanel.Initialize(this);
         }
-        
+
+        public void ActivateEndGamePanel(Team team)
+        {
+            endGamePanel.gameObject.SetActive(true);
+            endGamePanel.Activate(team);
+        }
+
+        public void DeactivateEndGamePanel()
+        {
+            endGamePanel.gameObject.SetActive(false);
+        }
+
     }
 }

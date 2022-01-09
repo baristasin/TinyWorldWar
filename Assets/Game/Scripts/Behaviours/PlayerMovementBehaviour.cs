@@ -1,3 +1,4 @@
+using Assets.Game.Scripts.Controllers;
 using Cinemachine;
 using Sirenix.OdinInspector;
 using System.Collections;
@@ -12,19 +13,19 @@ namespace Assets.Game.Scripts.Behaviours
         public bool IsWalking => _isWalking && _isGrounded;
         public bool IsAiming => _isAiming;
 
+        public Transform CameraTransform;
+
+        public Image Crosshair;
+
         [SerializeField] private CharacterController _characterController;
 
         [SerializeField] private float _speed;
-
-        [SerializeField] private Transform _cameraTransfom;
 
         [SerializeField] private Transform _groundCheck;
 
         [SerializeField] private LayerMask _groundMask;
 
         [SerializeField] private float _jumpHeight;
-
-        [SerializeField] private Image _crosshair;
 
         [SerializeField] private CinemachineFreeLook _cinemachineFreeLookCam;
 
@@ -45,8 +46,17 @@ namespace Assets.Game.Scripts.Behaviours
         [Button]
         public void SetFiring()
         {
+            if (!_isInitialized || !_isActivated) return;
+
             _isAiming = !_isAiming;
-            _crosshair.gameObject.SetActive(_isAiming);
+            Crosshair.gameObject.SetActive(_isAiming);
+        }
+
+        public override void Initialize(SoldierCharacterController soldierCharacterController)
+        {
+            base.Initialize(soldierCharacterController);
+
+            _cinemachineFreeLookCam.enabled = true;
         }
 
         private void Update()
@@ -70,7 +80,7 @@ namespace Assets.Game.Scripts.Behaviours
             {
                 _isWalking = true;
 
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + _cameraTransfom.eulerAngles.y;
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + CameraTransform.eulerAngles.y;
 
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, _turnSmoothTime);
 
@@ -93,7 +103,7 @@ namespace Assets.Game.Scripts.Behaviours
             {
                 _fowValue = Mathf.Lerp(_fowValue, _aimFowValue, Time.deltaTime * 5f);
 
-                float targetAngle = _cameraTransfom.eulerAngles.y;
+                float targetAngle = CameraTransform.eulerAngles.y;
 
                 float angle = targetAngle;
 

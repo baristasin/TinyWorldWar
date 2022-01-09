@@ -17,6 +17,8 @@ namespace Assets.Game.Scripts.UI
         [SerializeField] private Text _blueTeamPointsText;
         [SerializeField] private Text _redTeamPointsText;
 
+        [SerializeField] private GameObject _playContainer;
+
         public UIManager UIManager { get; set; }
 
         public void Initialize(UIManager Manager)
@@ -58,5 +60,11 @@ namespace Assets.Game.Scripts.UI
                 }
             }
         }
+
+        public void TogglePlayContainer(bool toggle)
+        {
+            _playContainer.gameObject.SetActive(toggle);
+        }
+
     }
 }

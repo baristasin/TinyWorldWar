@@ -29,7 +29,16 @@ namespace Assets.Game.Scripts.Controllers
 
         public override void Initialize(GameManager gameManager)
         {
-            base.Initialize(gameManager);            
+            base.Initialize(gameManager);
+
+            if (_playerCharacterController)
+            {
+                _playerCharacterController.PlayerMovementBehaviour.CameraTransform = GameManager.MainCamera.transform;
+                _playerCharacterController.AimBehaviour.TpsCamera = GameManager.MainCamera.GetComponent<Camera>();
+                _playerCharacterController.PlayerMovementBehaviour.Crosshair = GameManager.CrossHair;
+            }
+
+
         }
 
         public virtual void DetectorHit(string tag)

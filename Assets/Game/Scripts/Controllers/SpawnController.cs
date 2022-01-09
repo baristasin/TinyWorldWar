@@ -24,10 +24,13 @@ namespace Assets.Game.Scripts.Controllers
         {
             soldierCharacterController.DeactivateSoldier();
             soldierCharacterController.gameObject.SetActive(false);
-            CustomTimer timer = new CustomTimer(10f, soldierCharacterController);
-            timer.OnTimeEnded += SpawnSoldier;
 
+            var respawnCountdown = soldierCharacterController.Team == Team.Red ? 8 : 10;
+
+            CustomTimer timer = new CustomTimer(respawnCountdown, soldierCharacterController);
+            timer.OnTimeEnded += SpawnSoldier;
             _timerList.Add(timer);
+
         }
 
         private void Update()
@@ -36,10 +39,10 @@ namespace Assets.Game.Scripts.Controllers
             {
                 foreach (var timer in _timerList)
                 {
-                    if(timer != null)
+                    if (timer != null)
                     {
 
-                    timer.Tick(Time.deltaTime);
+                        timer.Tick(Time.deltaTime);
                     }
                 }
             }

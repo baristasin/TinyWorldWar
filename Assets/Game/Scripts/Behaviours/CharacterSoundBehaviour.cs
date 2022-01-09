@@ -49,6 +49,8 @@ namespace Assets.Game.Scripts.Behaviours
 
         private void Update()
         {
+            if (!_isInitialized || !_isActivated) return;
+
             if (_soldierCharacterController.AICharacterController)
             {
                 _isWalking = !_soldierCharacterController.AICharacterController.AIMovementBehaviour.IsAIChallenged;
