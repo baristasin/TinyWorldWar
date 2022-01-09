@@ -232,7 +232,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0a18eb2f29fde4b966e5026eeb1a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _layermask:
+  _friendLayerMaskValue:
+    serializedVersion: 2
+    m_Bits: 32768
+  _enemyLayerMaskValue:
     serializedVersion: 2
     m_Bits: 16384
 --- !u!114 &9009044259681367866

@@ -57,14 +57,14 @@ namespace Assets.Game.Scripts.Behaviours
                 transform.LookAt(_soldierCharacterController.AICharacterController.AIaimBehaviour.AimTarget);
             }
 
-            if (!_isAIChallenged || !_soldierCharacterController.AICharacterController.AIaimBehaviour.CanSeeEnemy)
+            if (_isAIChallenged && _soldierCharacterController.AICharacterController.AIaimBehaviour.CanSeeEnemy)
             {
-                _navMeshAgent.SetDestination(_targetPosition);
+                _navMeshAgent.SetDestination(_dodgeMovementPosition);
             }
 
             else
             {
-                _navMeshAgent.SetDestination(_dodgeMovementPosition);
+                _navMeshAgent.SetDestination(_targetPosition);
             }
         }
 

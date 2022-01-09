@@ -47,9 +47,17 @@ namespace Assets.Game.Scripts.Behaviours
             {
                 RaycastHit hit;
                 Debug.DrawRay(_aimingTransform.position, (_aimTarget.position - _aimingTransform.transform.position).normalized * 20f, Color.red);
-                if (Physics.Raycast(_aimingTransform.position, (_aimTarget.position - _aimingTransform.transform.position).normalized, out hit, 50f))
+                if (Physics.Raycast(_aimingTransform.position, (_aimTarget.position - _aimingTransform.transform.position).normalized, out hit, 50f,~_soldierCharacterController.AICharacterController.AIEnemyRadarBehaviour.FriendLayerMaskValue))
                 {
-                    _canSeeEnemy = true;
+                    if(1 << hit.transform.gameObject.layer == _soldierCharacterController.AICharacterController.AIEnemyRadarBehaviour.EnemyLayerMaskValue)
+                    {
+                        _canSeeEnemy = true;
+                    }
+                    else
+                    {
+                        _canSeeEnemy = false;
+                    }
+
                     if (hit.transform.gameObject.tag != "Dead" && 1 << hit.transform.gameObject.layer == _soldierCharacterController.AICharacterController.AIEnemyRadarBehaviour.EnemyLayerMaskValue)
                     {
                         return true;

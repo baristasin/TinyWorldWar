@@ -8,11 +8,13 @@ namespace Assets.Game.Scripts.Behaviours
 {
     public class AIEnemyRadarBehaviour : BaseCharacterBehaviour
     {
-        public LayerMask EnemyLayerMaskValue => _layermask;
+        public LayerMask FriendLayerMaskValue => _friendLayerMaskValue;
+        public LayerMask EnemyLayerMaskValue => _enemyLayerMaskValue;
         public bool IsThereAnEnemyNear => _currentEnemyTransform != null && _currentEnemyTransform.tag != "Dead";
         public Transform CurrentEnemyTransform => _currentEnemyTransform;
 
-        [SerializeField] private LayerMask _layermask;
+        [SerializeField] private LayerMask _friendLayerMaskValue;
+        [SerializeField] private LayerMask _enemyLayerMaskValue;
 
         private Transform _currentEnemyTransform;
 
@@ -40,7 +42,7 @@ namespace Assets.Game.Scripts.Behaviours
         {
             while (_isActivated && _isInitialized)
             {
-                Collider[] hitColliders = Physics.OverlapSphere(transform.position, 40f, _layermask);
+                Collider[] hitColliders = Physics.OverlapSphere(transform.position, 40f, _enemyLayerMaskValue);
                 if (hitColliders.Length > 0)
                 {
                     foreach (var col in hitColliders)
