@@ -13,6 +13,9 @@ namespace Assets.Game.Scripts.Controllers
 
         public AudioClip GetJumpAudioClip => _jumpAudioClip;
 
+        [SerializeField] private AudioSource _mainThemeAudioSource;
+        [SerializeField] private AudioClip _mainMenuTheme;
+
         [SerializeField] private AudioClip _walkingClip1;
         [SerializeField] private AudioClip _walkingClip2;
         [SerializeField] private AudioClip _getDamageClip;
@@ -23,6 +26,9 @@ namespace Assets.Game.Scripts.Controllers
         public override void Initialize(GameManager gameManager)
         {
             base.Initialize(gameManager);
+
+            //_mainThemeAudioSource.clip = _mainMenuTheme;
+            //_mainThemeAudioSource.Play();
         }
 
 
