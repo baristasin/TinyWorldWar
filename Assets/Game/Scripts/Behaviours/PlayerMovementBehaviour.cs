@@ -1,3 +1,4 @@
+using Assets.Game.Scripts.Controllers;
 using Cinemachine;
 using Sirenix.OdinInspector;
 using System.Collections;
@@ -45,8 +46,17 @@ namespace Assets.Game.Scripts.Behaviours
         [Button]
         public void SetFiring()
         {
+            if (!_isInitialized || !_isActivated) return;
+
             _isAiming = !_isAiming;
             _crosshair.gameObject.SetActive(_isAiming);
+        }
+
+        public override void Initialize(SoldierCharacterController soldierCharacterController)
+        {
+            base.Initialize(soldierCharacterController);
+
+            _cinemachineFreeLookCam.enabled = true;
         }
 
         private void Update()

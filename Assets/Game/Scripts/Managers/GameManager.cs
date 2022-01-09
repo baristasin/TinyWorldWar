@@ -38,18 +38,16 @@ namespace Assets.Game.Scripts.Managers
             HospitalController.Initialize(this);
             AreaController.Initialize(this);
 
-            _soldierCharacterController.Initialize(this); // Temp
-            foreach (var ai in _aiCharacterControllers)
-            {
-                ai.Initialize(this);
-            }
+            //_soldierCharacterController.Initialize(this); // Temp
+            //foreach (var ai in _aiCharacterControllers)
+            //{
+            //    ai.Initialize(this);
+            //}
 
             _blueTeamPoints = _teamStartingPoint;
             _redTeamPoints = _teamStartingPoint;
 
             UIManager.InGamePanel.UpdateTeamPointsUI(_blueTeamPoints, _redTeamPoints);
-
-
         }
 
         private void Update()
@@ -69,6 +67,22 @@ namespace Assets.Game.Scripts.Managers
                 UIManager.InGamePanel.UpdateTeamPointsUI(_blueTeamPoints, _redTeamPoints);
 
             }
+        }
+
+        public void PlayGame()
+        {
+            UIManager.InGamePanel.TogglePlayContainer(false);
+
+            _soldierCharacterController.Initialize(this); // Temp
+            foreach (var ai in _aiCharacterControllers)
+            {
+                ai.Initialize(this);
+            }
+        }
+
+        public void ExitGame()
+        {
+            Application.Quit();
         }
 
         public void SoldierSpawned(Team team)
