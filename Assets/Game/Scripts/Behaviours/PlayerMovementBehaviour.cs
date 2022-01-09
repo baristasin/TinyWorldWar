@@ -29,6 +29,8 @@ namespace Assets.Game.Scripts.Behaviours
 
         [SerializeField] private CinemachineFreeLook _cinemachineFreeLookCam;
 
+        [SerializeField] private Animator _animator;
+
         private float _defaultFowValue = 50f;
         private float _aimFowValue = 25;
 
@@ -79,6 +81,8 @@ namespace Assets.Game.Scripts.Behaviours
             if (direction.magnitude >= 0.1f)
             {
                 _isWalking = true;
+                _animator.SetBool("isIdle", false);
+                _animator.SetBool("isWalking", true);
 
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + CameraTransform.eulerAngles.y;
 
@@ -95,6 +99,8 @@ namespace Assets.Game.Scripts.Behaviours
             else
             {
                 _isWalking = false;
+                _animator.SetBool("isIdle", true);
+                _animator.SetBool("isWalking", false);
             }
 
             _cinemachineFreeLookCam.m_Lens.FieldOfView = _fowValue;

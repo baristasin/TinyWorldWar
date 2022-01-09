@@ -102,6 +102,15 @@ namespace Assets.Game.Scripts.Managers
             Destroy(_levelBehaviour.gameObject);
             UIManager.ActivateEndGamePanel(team);
 
+            if(team == Team.Red)
+            {
+                AudioController.PlayDefeat();
+            }
+            else
+            {
+                AudioController.PlayVictory();
+            }
+
         }
 
         public void PlayGame()
