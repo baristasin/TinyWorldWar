@@ -278,9 +278,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0a18eb2f29fde4b966e5026eeb1a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _layermask:
+  _friendLayerMaskValue:
     serializedVersion: 2
-    m_Bits: 32768
+    m_Bits: 0
+  _enemyLayerMaskValue:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &181542389597383941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,11 +762,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8439120527515709509, guid: cae6e7810ea2fdd439d6aaa5e38bb24b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8588c9824eb6810468a57fc4ee3e52db, type: 2}
+    - target: {fileID: 812947928087963621, guid: cae6e7810ea2fdd439d6aaa5e38bb24b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e9bd58b69853b9f478195549aa511622, type: 2}
+    - target: {fileID: 812947928087963621, guid: cae6e7810ea2fdd439d6aaa5e38bb24b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6c3475d7cb172584888873ba9c656ac1, type: 2}
     - target: {fileID: 919132149155446097, guid: cae6e7810ea2fdd439d6aaa5e38bb24b,
         type: 3}
       propertyPath: m_Name
       value: Muz_ani_
       objectReference: {fileID: 0}
+    - target: {fileID: 6613309001118226654, guid: cae6e7810ea2fdd439d6aaa5e38bb24b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f04c746934ab9f6459434fc5e0849569, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cae6e7810ea2fdd439d6aaa5e38bb24b, type: 3}
 --- !u!1 &1233736670460874497 stripped
