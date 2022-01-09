@@ -44,6 +44,8 @@ namespace Assets.Game.Scripts.Behaviours
 
         private bool _isWalking;
 
+        private float _yDistance;
+
         public void SetFiring()
         {
             if (!_isInitialized || !_isActivated) return;
@@ -57,11 +59,19 @@ namespace Assets.Game.Scripts.Behaviours
             base.Initialize(soldierCharacterController);
 
             _cinemachineFreeLookCam.enabled = true;
+
+            _yDistance = transform.position.y;
+
         }
 
         private void Update()
         {
             if (!_isInitialized || !_isActivated) return;
+
+            if(Mathf.Abs(transform.position.y - _yDistance) > 20f)
+            {
+                _soldierCharacterController.PlayerCharacterController.CharacterHealthBehaviour.UpdateHealth(-9999);
+            }
 
             _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundMask);
 
