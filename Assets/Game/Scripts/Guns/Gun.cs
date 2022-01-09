@@ -111,7 +111,7 @@ namespace Assets.Game.Scripts.Guns
                     _audioSource.clip = _shootAudioClip;
                     _audioSource.Play();
                     _shootEffect.Play();
-                    var bullet = Instantiate(_bulletPrefab, _muzzleTransform.position, _muzzleTransform.rotation); // Object Pooling
+                    var bullet = Instantiate(_bulletPrefab, _muzzleTransform.position, _muzzleTransform.rotation,transform); // Object Pooling
                     _isOnCooldown = true;
                     _cooldown = _firingRate;
                     _currentMagazineSize--;
