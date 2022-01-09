@@ -48,7 +48,7 @@ namespace Assets.Game.Scripts.Behaviours
             _currentGun = _weapons[0];
 
             _isPlayerGunner = soldierCharacterController.PlayerCharacterController != null ? true : false;
-
+            
         }
 
         private void Update()
@@ -99,6 +99,29 @@ namespace Assets.Game.Scripts.Behaviours
             base.Activate();
 
             ChangeGun(true, true);
+
+            if (!_isPlayerGunner)
+            {
+                var gunRandomNumber = Random.Range(1, 11);
+
+                var minNumberRed = 8;
+                var minNumberBlue = 9;
+                
+                if(_soldierCharacterController.Team == Team.Blue)
+                {
+                    if (gunRandomNumber > minNumberBlue)
+                    {
+                        ChangeGun(true);
+                    }
+                }
+                else
+                {
+                    if (gunRandomNumber > minNumberRed)
+                    {
+                        ChangeGun(true);
+                    }
+                }
+            }
         }
 
         public override void Deactivate()

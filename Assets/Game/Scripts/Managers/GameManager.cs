@@ -1,22 +1,30 @@
+using Assets.Game.Scripts.Behaviours;
 using Assets.Game.Scripts.Controllers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Game.Scripts.Managers
 {
     public class GameManager : MonoBehaviour
     {
         public SoldierCharacterController SoldierCharacterController => _soldierCharacterController;
+        public Camera MainCamera => _mainCamera;
+        public Image CrossHair => _crossHair;
 
         public InputController InputController;
-        public SpawnController SpawnController;
         public BattleController BattleController;
         public AudioController AudioController;
+        public UIManager UIManager;
+
+        public SpawnController SpawnController;
         public HospitalController HospitalController;
         public AreaController AreaController;
-        public UIManager UIManager;
+
+        [SerializeField] private Camera _mainCamera;
+        [SerializeField] private Image _crossHair;
 
         [SerializeField] private SoldierCharacterController _soldierCharacterController;
         [SerializeField] private List<AICharacterController> _aiCharacterControllers;
@@ -28,15 +36,20 @@ namespace Assets.Game.Scripts.Managers
 
         private bool _isGameEnded;
 
+        [SerializeField] private LevelBehaviour _levelBehaviourPrefab;
+
+        private LevelBehaviour _levelBehaviour;
+
         private void Start()
         {
             AudioController.Initialize(this);
             InputController.Initialize(this);
-            SpawnController.Initialize(this);
             BattleController.Initialize(this);
             UIManager.Initialize(this);
-            HospitalController.Initialize(this);
-            AreaController.Initialize(this);
+
+            //SpawnController.Initialize(this);
+            //HospitalController.Initialize(this);
+            //AreaController.Initialize(this);
 
             //_soldierCharacterController.Initialize(this); // Temp
             //foreach (var ai in _aiCharacterControllers)
@@ -52,10 +65,20 @@ namespace Assets.Game.Scripts.Managers
 
         private void Update()
         {
+            if (Input.GetKeyDown("q"))
+            {
+                _blueTeamPoints = 0;
+            }
+
+            if (Input.GetKeyDown("t"))
+            {
+                _redTeamPoints = 0;
+            }
+
             if(_blueTeamPoints <= 0)
             {
                 _blueTeamPoints = 0;
-                _isGameEnded = true;
+                RoundEnded(Team.Red);
                 UIManager.InGamePanel.UpdateTeamPointsUI(_blueTeamPoints, _redTeamPoints);
 
             }
@@ -63,15 +86,36 @@ namespace Assets.Game.Scripts.Managers
             if (_redTeamPoints <= 0)
             {
                 _redTeamPoints = 0;
-                _isGameEnded = true;
+                RoundEnded(Team.Blue);
                 UIManager.InGamePanel.UpdateTeamPointsUI(_blueTeamPoints, _redTeamPoints);
-
             }
+        }
+
+        private void RoundEnded(Team team)
+        {
+            if (_isGameEnded) return;
+
+            Destroy(_levelBehaviour.gameObject);
+            UIManager.ActivateEndGamePanel(team);
+
         }
 
         public void PlayGame()
         {
             UIManager.InGamePanel.TogglePlayContainer(false);
+
+            _levelBehaviour = Instantiate(_levelBehaviourPrefab);
+
+            SpawnController = _levelBehaviour.SpawnController;
+            HospitalController = _levelBehaviour.HospitalController;
+            AreaController = _levelBehaviour.AreaController;
+
+            SpawnController.Initialize(this);
+            HospitalController.Initialize(this);
+            AreaController.Initialize(this);
+
+            _soldierCharacterController = _levelBehaviour.SoldierCharacterController;
+            _aiCharacterControllers = _levelBehaviour.AICharacterControllers;
 
             _soldierCharacterController.Initialize(this); // Temp
             foreach (var ai in _aiCharacterControllers)

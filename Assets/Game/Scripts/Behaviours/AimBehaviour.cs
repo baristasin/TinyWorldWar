@@ -8,7 +8,8 @@ namespace Assets.Game.Scripts.Behaviours
     {
         public Transform AimTransform => _aimTransform;
 
-        [SerializeField] private Camera _tpsCamera;
+        public Camera TpsCamera;
+
         [SerializeField] private Transform _aimTransform;
 
         [SerializeField] private float _aimValue;
@@ -17,7 +18,7 @@ namespace Assets.Game.Scripts.Behaviours
         {
             if(_isInitialized && _isActivated)
             {
-                Ray ray = new Ray(_tpsCamera.transform.position, _tpsCamera.transform.forward * _aimValue);
+                Ray ray = new Ray(TpsCamera.transform.position, TpsCamera.transform.forward * _aimValue);
                 RaycastHit hit;
                 if(Physics.Raycast(ray,out hit))
                 {
@@ -25,7 +26,7 @@ namespace Assets.Game.Scripts.Behaviours
                 }
                 else
                 {
-                  _aimTransform.position = _tpsCamera.transform.position + _tpsCamera.transform.forward * _aimValue; // 40 depends on gun range
+                  _aimTransform.position = TpsCamera.transform.position + TpsCamera.transform.forward * _aimValue; // 40 depends on gun range
                 }
             }
         }
