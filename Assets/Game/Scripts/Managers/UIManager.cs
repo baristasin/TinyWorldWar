@@ -7,6 +7,7 @@ namespace Assets.Game.Scripts.Managers
 {
     public class UIManager : CustomBehaviour
     {
+        public GameObject _maiMenuPanel;
         public InGamePanel InGamePanel;
         public EndGamePanel endGamePanel;
 
@@ -26,6 +27,7 @@ namespace Assets.Game.Scripts.Managers
         public void DeactivateEndGamePanel()
         {
             endGamePanel.gameObject.SetActive(false);
+            _maiMenuPanel.SetActive(true);
         }
 
     }

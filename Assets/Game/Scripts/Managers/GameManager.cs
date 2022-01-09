@@ -34,6 +34,8 @@ namespace Assets.Game.Scripts.Managers
         private int _blueTeamPoints;
         private int _redTeamPoints;
 
+        private int _teamStartingPointAtStart;
+
         private bool _isGameEnded;
 
         [SerializeField] private LevelBehaviour _levelBehaviourPrefab;
@@ -42,6 +44,8 @@ namespace Assets.Game.Scripts.Managers
 
         private void Start()
         {
+            _teamStartingPointAtStart = _teamStartingPoint;
+
             AudioController.Initialize(this);
             InputController.Initialize(this);
             BattleController.Initialize(this);
@@ -94,7 +98,7 @@ namespace Assets.Game.Scripts.Managers
         private void RoundEnded(Team team)
         {
             if (_isGameEnded) return;
-
+            _isGameEnded = true;
             Destroy(_levelBehaviour.gameObject);
             UIManager.ActivateEndGamePanel(team);
 
@@ -102,6 +106,11 @@ namespace Assets.Game.Scripts.Managers
 
         public void PlayGame()
         {
+            _isGameEnded = false;
+
+            _blueTeamPoints = _teamStartingPoint;
+            _redTeamPoints = _teamStartingPoint;
+
             UIManager.InGamePanel.TogglePlayContainer(false);
 
             _levelBehaviour = Instantiate(_levelBehaviourPrefab);
