@@ -9,7 +9,6 @@ namespace Assets.Game.Scripts.Behaviours
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private CinemachineSmoothPath _path;
         [SerializeField] private float _speed;
-        [SerializeField] private AudioListener AudioListener;
 
         private float _distance;
 

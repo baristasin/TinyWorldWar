@@ -15,5 +15,6 @@ namespace Assets.Game.Scripts.Managers
 
             InGamePanel.Initialize(this);
         }
+        
     }
 }

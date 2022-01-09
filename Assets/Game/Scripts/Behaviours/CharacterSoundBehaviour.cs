@@ -39,7 +39,7 @@ namespace Assets.Game.Scripts.Behaviours
             _jumpAudioClip = soldierCharacterController.GameManager.AudioController.GetJumpAudioClip;
 
             _walkAudioSource.clip = _walkAudioClip;
-            _getDamageAudioSource.clip =_getDamageAudioClip;
+            _getDamageAudioSource.clip = _getDamageAudioClip;
             _gunSwitchAudioSource.clip = _gunSwitchAudioClip;
             _jumpAudioSource.clip = _jumpAudioClip;
 
@@ -49,14 +49,23 @@ namespace Assets.Game.Scripts.Behaviours
 
         private void Update()
         {
-            if(_isInitialized && _isActivated)
+            if (_soldierCharacterController.AICharacterController)
             {
-                //_walkAudioSource.enabled = _isWalking;
+                _isWalking = !_soldierCharacterController.AICharacterController.AIMovementBehaviour.IsAIChallenged;
+            }
+            else
+            {
+                _isWalking = _soldierCharacterController.PlayerCharacterController.PlayerMovementBehaviour.IsWalking;
+            }
+
+            if (_isInitialized && _isActivated && _isWalking)
+            {
+                _walkAudioSource.enabled = _isWalking;
             }
 
             else
             {
-                //_walkAudioSource.enabled = false;
+                _walkAudioSource.enabled = false;
             }
         }
 

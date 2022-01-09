@@ -7,9 +7,12 @@ namespace Assets.Game.Scripts.Behaviours
 {
     public class AIMovementBehaviour : BaseCharacterBehaviour
     {
+        public bool IsAIChallenged => _isAIChallenged;
+
         public Vector3 TargetPosition => _targetPosition;
 
         [SerializeField] private NavMeshAgent _navMeshAgent;
+        [SerializeField] private Animator _aiAnimator;
 
         private Vector3 _targetPosition;
 
@@ -23,7 +26,7 @@ namespace Assets.Game.Scripts.Behaviours
         {
             base.Initialize(soldierCharacterController);
 
-            _navMeshAgent.speed = Random.Range(3.5f, 5f);                
+            _navMeshAgent.speed = Random.Range(3.5f, 5f);
         }
 
         public override void Activate()
@@ -37,12 +40,24 @@ namespace Assets.Game.Scripts.Behaviours
 
             _navMeshAgent.updateRotation = !_soldierCharacterController.AICharacterController.AIaimBehaviour.IsAiming;
 
+            if (!_isAIChallenged && Vector3.Distance(transform.position, _targetPosition) > 1.5f)
+            {
+                _aiAnimator.SetBool("isWalking", true);
+                _aiAnimator.SetBool("isIdle", false);                
+            }
+
+            else
+            {
+                _aiAnimator.SetBool("isWalking", false);
+                _aiAnimator.SetBool("isIdle", true);
+            }
+
             if (_soldierCharacterController.AICharacterController.AIaimBehaviour.IsAiming)
             {
                 transform.LookAt(_soldierCharacterController.AICharacterController.AIaimBehaviour.AimTarget);
             }
 
-            if (!_isAIChallenged)
+            if (!_isAIChallenged || !_soldierCharacterController.AICharacterController.AIaimBehaviour.CanSeeEnemy)
             {
                 _navMeshAgent.SetDestination(_targetPosition);
             }

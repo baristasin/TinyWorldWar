@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 namespace Assets.Game.Scripts.Controllers
 {
@@ -15,6 +16,8 @@ namespace Assets.Game.Scripts.Controllers
 
     public class AreaController : CustomBehaviour
     {
+        public static event Action<List<Area>> OnAllAreasSent;
+
         [SerializeField] private List<Area> _allAreas;
 
         [SerializeField] private List<Area> _areasFromBlueSide;
@@ -45,6 +48,8 @@ namespace Assets.Game.Scripts.Controllers
                 Debug.Log($"RedAreas: {redTeamAreas}");
 
                 GameManager.UpdateGameState(blueTeamAreas, redTeamAreas);
+
+                OnAllAreasSent?.Invoke(_allAreas);
             }
 
         }
@@ -56,14 +61,14 @@ namespace Assets.Game.Scripts.Controllers
                 return area;
             }
 
-            if (team == Team.Blue && _areasFromBlueSide.First(x => x.Team == Team.Neutral || x.Team == Team.Red) != null)
+            if (team == Team.Blue && _areasFromBlueSide.First(x => x.Team == Team.Neutral || x.Team == Team.Red) is Area areaG)
             {
-                return _areasFromBlueSide.First(x => x.Team == Team.Neutral || x.Team == Team.Red);
+                return areaG;
             }
 
-            else if(team == Team.Red && _areasFromRedSide.First(x => x.Team == Team.Neutral || x.Team == Team.Blue) != null)
+            else if(team == Team.Red && _areasFromRedSide.First(x => x.Team == Team.Neutral || x.Team == Team.Blue) is Area areaF)
             {
-                return _areasFromRedSide.First(x => x.Team == Team.Neutral || x.Team == Team.Blue);
+                return areaF;
             }
 
             else

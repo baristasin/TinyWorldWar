@@ -9,6 +9,7 @@ namespace Assets.Game.Scripts.Behaviours
 {
     public class PlayerMovementBehaviour : BaseCharacterBehaviour
     {
+        public bool IsWalking => _isWalking && _isGrounded;
         public bool IsAiming => _isAiming;
 
         [SerializeField] private CharacterController _characterController;
@@ -39,6 +40,8 @@ namespace Assets.Game.Scripts.Behaviours
         private bool _isAiming;
         private Vector3 _fallVelocity;
 
+        private bool _isWalking;
+
         [Button]
         public void SetFiring()
         {
@@ -65,6 +68,8 @@ namespace Assets.Game.Scripts.Behaviours
 
             if (direction.magnitude >= 0.1f)
             {
+                _isWalking = true;
+
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + _cameraTransfom.eulerAngles.y;
 
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, _turnSmoothTime);
@@ -76,6 +81,10 @@ namespace Assets.Game.Scripts.Behaviours
 
                 Vector3 moveDirection = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
                 _characterController.Move(moveDirection.normalized * _speed * Time.deltaTime);
+            }
+            else
+            {
+                _isWalking = false;
             }
 
             _cinemachineFreeLookCam.m_Lens.FieldOfView = _fowValue;

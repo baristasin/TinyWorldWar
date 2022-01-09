@@ -95,8 +95,24 @@ namespace Assets.Game.Scripts.Managers
             _blueTeamPoints -= redTeamAreaCount;
             _redTeamPoints -= blueTeamAreaCount;
 
+            _blueTeamPoints = Mathf.Clamp(_blueTeamPoints,0, _teamStartingPoint);
+            _redTeamPoints = Mathf.Clamp(_redTeamPoints, 0, _teamStartingPoint);
+
             UIManager.InGamePanel.UpdateTeamPointsUI(_blueTeamPoints, _redTeamPoints);
 
+            if (_blueTeamPoints < 0)
+            {
+                _isGameEnded = true;
+                //Red Win
+                return;
+            }
+
+            if(_redTeamPoints < 0)
+            {
+                _isGameEnded = true;
+                //Blue Win
+                return;
+            }
         }
     }
 }
