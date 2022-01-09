@@ -16,6 +16,5 @@ namespace Assets.Game.Scripts.Behaviours
         public List<AICharacterController> AICharacterControllers;
         public SoldierCharacterController SoldierCharacterController;
 
-
     }
 }
